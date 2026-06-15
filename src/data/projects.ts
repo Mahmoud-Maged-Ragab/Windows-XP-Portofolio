@@ -21,9 +21,7 @@ export const PROJECTS: Project[] = [
       "Window z-index management",
       "Responsive mobile layout",
     ],
-    github: "https://github.com/yourusername/xp-portfolio",
-    live: "https://yourportfolio.com",
-    icon: "🖥️",
+    icon: "/WindowsXPICon.png",
   },
   {
     id: "Social Hub",
