@@ -1,26 +1,233 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── XP Taskbar ─────────────────────────────────────────── */
+.xp-taskbar {
+  background: linear-gradient(to bottom,
+    #3169c4 0%,
+    #4a86e8 8%,
+    #2a5db0 50%,
+    #1e4fa0 51%,
+    #2a63bf 100%
+  );
+  border-top: 1px solid #1a3d8a;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.4);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Start Button ───────────────────────────────────────── */
+.xp-start-btn {
+  background: linear-gradient(to bottom,
+    #67a931 0%,
+    #4b8a1f 50%,
+    #3d7419 51%,
+    #5a9e28 100%
+  );
+  border-radius: 0 12px 12px 0;
+  border: 1px solid #2a5c10;
+  border-left: none;
+  font-style: italic;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 14px 0 10px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 2px 0 6px rgba(0,0,0,0.3);
+  letter-spacing: 0.5px;
+}
+.xp-start-btn:hover {
+  background: linear-gradient(to bottom,
+    #7ec43c 0%,
+    #5aa028 50%,
+    #4a8820 51%,
+    #6ab530 100%
+  );
+}
+.xp-start-btn-active {
+  background: linear-gradient(to bottom,
+    #3d7419 0%,
+    #4b8a1f 100%
+  );
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Taskbar Window Buttons ─────────────────────────────── */
+.xp-taskbar-btn {
+  background: linear-gradient(to bottom,
+    #4a86e8 0%,
+    #2a5db0 100%
+  );
+  border: 1px solid #1a3d8a;
+  border-radius: 3px;
+  color: white;
+  font-size: 11px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: background 0.1s;
 }
+.xp-taskbar-btn:hover {
+  background: linear-gradient(to bottom,
+    #5a96f8 0%,
+    #3a6dc0 100%
+  );
+}
+.xp-taskbar-btn-active {
+  background: linear-gradient(to bottom,
+    #2a5db0 0%,
+    #1e4a9a 100%
+  );
+  box-shadow: inset 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+/* ─── XP Window Chrome ───────────────────────────────────── */
+.xp-window {
+  border-radius: 8px 8px 0 0;
+  border: 1px solid #0a246a;
+  box-shadow:
+    0 0 0 1px #7f9db9,
+    4px 6px 20px rgba(0,0,0,0.5),
+    inset 0 0 0 1px rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+
+/* ─── XP Title Bar ───────────────────────────────────────── */
+.xp-titlebar {
+  background: linear-gradient(to bottom,
+    #0A246A 0%,
+    #A6CAF0 4%,
+    #2B5FC0 8%,
+    #3D7AC8 15%,
+    #1659B6 50%,
+    #1254AF 51%,
+    #1A5CB5 80%,
+    #1E6AC8 100%
+  );
+  border-bottom: 1px solid #0a246a;
+  border-radius: 7px 7px 0 0;
+  min-height: 30px;
+  cursor: default;
+}
+
+/* ─── Window Control Buttons ─────────────────────────────── */
+.xp-btn-minimize, .xp-btn-maximize {
+  background: linear-gradient(to bottom,
+    #f5f5f0 0%,
+    #e0e0d8 50%,
+    #c8c8c0 51%,
+    #d8d8d0 100%
+  );
+  border: 1px solid #888;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+}
+.xp-btn-minimize:hover, .xp-btn-maximize:hover {
+  background: linear-gradient(to bottom, #fff 0%, #e8e8e0 100%);
+}
+.xp-btn-close {
+  background: linear-gradient(to bottom,
+    #f44 0%,
+    #c00 50%,
+    #a00 51%,
+    #c22 100%
+  );
+  border: 1px solid #880000;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255,180,180,0.5);
+}
+.xp-btn-close:hover {
+  background: linear-gradient(to bottom, #f66 0%, #d00 100%);
+}
+
+/* ─── Start Menu ─────────────────────────────────────────── */
+.xp-start-menu {
+  background: white;
+  border: 1px solid #0a246a;
+  border-bottom: none;
+  box-shadow: 3px -3px 12px rgba(0,0,0,0.4);
+  border-radius: 8px 8px 0 0;
+}
+.xp-start-header {
+  background: linear-gradient(to bottom,
+    #1a5bb5 0%,
+    #1054b0 100%
+  );
+  border-bottom: 2px solid #f0a000;
+}
+.xp-start-footer {
+  background: linear-gradient(to bottom,
+    #1a5bb5 0%,
+    #0f4da8 100%
+  );
+  border-top: 2px solid #f0a000;
+}
+
+/* ─── XP Buttons ─────────────────────────────────────────── */
+.xp-btn {
+  background: linear-gradient(to bottom,
+    #f5f5f0 0%,
+    #e0e0d8 50%,
+    #c8c8c0 51%,
+    #d8d8d0 100%
+  );
+  border: 1px solid #888;
+  border-radius: 3px;
+  color: #1a1a1a;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 8px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 1px 1px 2px rgba(0,0,0,0.2);
+}
+.xp-btn:hover {
+  background: linear-gradient(to bottom, #fff 0%, #ebebeb 100%);
+  border-color: #3c7fb1;
+}
+.xp-btn:active {
+  background: linear-gradient(to bottom, #d8d8d8 0%, #e8e8e8 100%);
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+}
+.xp-btn-primary {
+  background: linear-gradient(to bottom,
+    #4a86e8 0%,
+    #2a5db0 50%,
+    #1e4fa0 51%,
+    #2a63bf 100%
+  );
+  border: 1px solid #0a246a;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 4px 12px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+.xp-btn-primary:hover {
+  background: linear-gradient(to bottom, #5a96f8 0%, #3a6dc0 100%);
+}
+
+/* ─── Menu Bar ───────────────────────────────────────────── */
+.xp-menu-bar {
+  background: #ECE9D8;
+  font-size: 12px;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 16px; height: 16px; }
+::-webkit-scrollbar-track { background: #d4d0c8; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #c8c4b8, #d8d4cc);
+  border: 1px solid #9a9790;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(to right, #b8b4a8, #c8c4bc); }
+::-webkit-scrollbar-corner { background: #d4d0c8; }
+
+/* ─── Wallpaper ──────────────────────────────────────────── */
+.xp-wallpaper { background: #3a7ebf; }
