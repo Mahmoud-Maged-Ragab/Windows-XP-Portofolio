@@ -56,12 +56,6 @@ export default function ContactWindow() {
               value: "https://github.com/Mahmoud-Maged-Ragab",
               href: "https://github.com/Mahmoud-Maged-Ragab",
             },
-            {
-              icon: WebProgrammingIcon,
-              label: "Portfolio",
-              value: "yourportfolio.com",
-              href: "https://yourportfolio.com",
-            },
           ].map((link) => {
             const Icon = link.icon;
 

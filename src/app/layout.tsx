@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Portfolio — Mahmoud Ragab | Frontend Developer",
+  title: "Portfolio Mahmoud Ragab",
   description:
     "Personal portfolio of Mahmoud Maged Mahmoud Ragab, a Frontend Developer specializing in React, Next.js, and TypeScript. Presented as an interactive Windows XP desktop experience.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "An interactive Windows XP-themed portfolio showcasing my projects, skills, and experience as a Frontend Developer.",
     type: "website",
     locale: "en_US",
-    url: "https://yourportfolio.com",
+    url: "https://mahmoud-maged-portofolio.vercel.app",
     siteName: "Mahmoud Maged's Portfolio",
   },
   twitter: {
