@@ -8,6 +8,8 @@ import {
   MapPin,
   Target,
 } from "lucide-react";
+import Image from "next/image";
+// import UserImg from "../../public/UserImg.jpeg";
 
 export default function AboutWindow() {
   return (
@@ -36,8 +38,13 @@ export default function AboutWindow() {
       <div className="p-5 space-y-5">
         {/* Profile header */}
         <div className="flex items-start gap-4">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-4xl shrink-0 shadow-md border-2 border-white">
-            👨‍💻
+          <div className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 shadow-md border-2 border-white">
+            <Image
+              src="/UserImg.jpeg"
+              alt="Mahmoud Maged"
+              fill
+              className="object-cover"
+            />
           </div>
           <div>
             <h1 className="text-xl font-bold text-gray-800">
@@ -88,6 +95,18 @@ export default function AboutWindow() {
                 company: "Freelance",
                 period: "2025 – Present",
                 desc: "Developed and maintained responsive web applications, improved website functionality and user experience, and optimized frontend performance.",
+              },
+              {
+                role: "Backend Developer",
+                company: "BeeViro",
+                period: "April 2026 - Present",
+                desc: "Designed and built scalable backend systems, workflow automations, and internal business tools. Developed RESTful APIs, designed relational databases, and implemented secure authentication and CRUD operations.",
+              },
+              {
+                role: "Backend PHP Laravel Intern",
+                company: "Pan Arab Media",
+                period: "July 2026",
+                desc: "Developed backend systems using PHP, Laravel, and MySQL. Designed relational databases and implemented authentication and CRUD functionality.",
               },
               {
                 role: "Intern",

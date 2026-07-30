@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { APP_REGISTRY } from "@/data/apps";
 import { useWindowStore } from "@/store/windowStore";
 import { AppId } from "@/types";
+import Image from "next/image";
 
 interface StartMenuProps {
   onClose: () => void;
@@ -39,8 +40,13 @@ export default function StartMenu({ onClose }: StartMenuProps) {
     >
       {/* Header banner */}
       <div className="xp-start-header flex items-center gap-3 px-4 py-3">
-        <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-2xl">
-          👨‍💻
+        <div className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 shadow-md border-2 border-white">
+          <Image
+            src="/UserImg.jpeg"
+            alt="Mahmoud Maged"
+            fill
+            className="object-cover"
+          />
         </div>
         <div>
           <p className="text-white font-bold text-sm">Mahmoud Ragab</p>

@@ -89,6 +89,39 @@ export default function CVWindow() {
             <li>Improved UI and user experience</li>
             <li>Optimized frontend performance</li>
           </ul>
+          <br />
+
+          <h3 className="font-bold">
+            Backend Developer — BeeViro (April 2026 - Present)
+          </h3>
+
+          <ul className="list-disc ml-5">
+            <li>
+              Developed scalable backend systems and internal business tools
+            </li>
+            <li>Built workflow automations and integrated third-party APIs</li>
+            <li>
+              Designed system architecture, optimized backend performance, and
+              maintained reliable services
+            </li>
+          </ul>
+          <br />
+
+          <h3 className="font-bold">
+            Backend PHP Laravel Internship — July 2026
+          </h3>
+
+          <ul className="list-disc ml-5">
+            <li>Developed backend systems using PHP, Laravel, and MySQL</li>
+            <li>
+              Designed relational databases and implemented authentication and
+              CRUD functionality
+            </li>
+            <li>
+              Collaborated with the team to debug, optimize, and deploy web
+              applications
+            </li>
+          </ul>
 
           <h3 className="font-bold mt-3">
             Commercial International Bank (CIB) Internship — 2025
@@ -108,10 +141,19 @@ export default function CVWindow() {
               "Next.js",
               "TypeScript",
               "JavaScript",
-              "Tailwind",
+              "PHP",
+              "Laravel",
+              "MySQL",
+              "PostgreSQL",
+              "Supabase",
+              "Prisma",
+              "REST APIs",
+              "Automation",
+              "System Design",
+              "Tailwind CSS",
               "Git",
               "GitHub",
-              "UI/UX",
+              "Docker",
             ].map((skill) => (
               <span
                 key={skill}

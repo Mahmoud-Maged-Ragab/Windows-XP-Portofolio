@@ -3,7 +3,7 @@ import { CodeXml, Wrench, Zap, CircleCheckBig, Rocket } from "lucide-react";
 
 export const SKILLS: SkillGroup[] = [
   {
-    category: "Frontend",
+    category: "Frontend Development",
     icon: CodeXml,
     skills: [
       "React",
@@ -14,32 +14,58 @@ export const SKILLS: SkillGroup[] = [
       "CSS3",
       "Tailwind CSS",
       "Framer Motion",
+      "shadcn/ui",
+      "HeroUI",
+    ],
+  },
+  {
+    category: "Backend & Systems",
+    icon: Zap,
+    skills: [
+      "PHP",
+      "Laravel",
+      "Node.js",
+      "REST APIs",
+      "Authentication & Authorization",
+      "CRUD Systems",
+      "System Architecture",
+      "Automation Workflows",
+    ],
+  },
+  {
+    category: "Databases & Data",
+    icon: CircleCheckBig,
+    skills: [
+      "MySQL",
+      "PostgreSQL",
+      "Supabase",
+      "Prisma ORM",
+      "Database Design",
+      "Relational Databases",
     ],
   },
   {
     category: "Tools & Workflow",
     icon: Wrench,
-    skills: ["Git", "GitHub", "VS Code", "Figma", "npm / pnpm"],
-  },
-  {
-    category: "Backend Knowledge",
-    icon: Zap,
-    skills: ["REST APIs", "Authentication (JWT/OAuth)"],
-  },
-  {
-    category: "Testing & Quality",
-    icon: CircleCheckBig,
     skills: [
-      "Jest",
-      "React Testing Library",
-      "Playwright",
-      "Cypress",
-      "Lighthouse",
+      "Git",
+      "GitHub",
+      "VS Code",
+      "Figma",
+      "npm / pnpm",
+      "Postman",
+      "Claude Code",
     ],
   },
   {
-    category: "Deployment",
+    category: "Deployment & DevOps",
     icon: Rocket,
-    skills: ["Vercel", "GitHub Actions", "Docker (basics)"],
+    skills: [
+      "Vercel",
+      "GitHub Actions",
+      "Docker",
+      "Environment Configuration",
+      "CI/CD Basics",
+    ],
   },
 ];
