@@ -15,13 +15,19 @@ export default function Taskbar() {
 
   // Close start menu on outside click
   useEffect(() => {
-    function handleClick(e: MouseEvent) {
+    function handleClick(e: MouseEvent | TouchEvent) {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setStartOpen(false);
       }
     }
-    if (startOpen) document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    if (startOpen) {
+      document.addEventListener("mousedown", handleClick);
+      document.addEventListener("touchstart", handleClick);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("touchstart", handleClick);
+    };
   }, [startOpen]);
 
   function handleTaskClick(id: string, isMinimized: boolean) {

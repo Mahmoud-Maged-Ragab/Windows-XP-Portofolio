@@ -15,7 +15,15 @@ interface WindowProps {
 export default function Window({ window: win, children }: WindowProps) {
   const { closeWindow, minimizeWindow, maximizeToggle, focusWindow, moveWindow } =
     useWindowStore();
+  const viewport = useWindowStore((s) => s.viewport);
   const appDef = APP_REGISTRY.find((a) => a.id === win.appId);
+
+  const maxWidth = viewport.width * 0.95;
+  const maxHeight = viewport.height * 0.85;
+  const width = Math.min(win.size.width, maxWidth);
+  const height = Math.min(win.size.height, maxHeight);
+  const left = Math.min(Math.max(0, win.position.x), Math.max(0, viewport.width - width));
+  const top = Math.min(Math.max(0, win.position.y), Math.max(0, viewport.height - 40 - height));
 
   const style = win.isMaximized
     ? {
@@ -26,10 +34,12 @@ export default function Window({ window: win, children }: WindowProps) {
         zIndex: win.zIndex,
       }
     : {
-        left: win.position.x,
-        top: win.position.y,
-        width: win.size.width,
-        height: win.size.height,
+        left,
+        top,
+        width,
+        height,
+        maxWidth: '95vw',
+        maxHeight: '85vh',
         zIndex: win.zIndex,
       };
 

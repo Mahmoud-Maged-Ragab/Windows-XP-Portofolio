@@ -36,10 +36,10 @@ export default function StartMenu({ onClose }: StartMenuProps) {
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 20, opacity: 0 }}
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
-      className="absolute bottom-full left-0 mb-1 xp-start-menu w-[320px] shadow-2xl overflow-hidden rounded-tr-lg rounded-tl-lg"
+      className="absolute bottom-full left-0 mb-1 xp-start-menu w-[320px] max-w-[92vw] max-h-[85vh] flex flex-col shadow-2xl overflow-hidden rounded-tr-lg rounded-tl-lg"
     >
       {/* Header banner */}
-      <div className="xp-start-header flex items-center gap-3 px-4 py-3">
+      <div className="xp-start-header shrink-0 flex items-center gap-3 px-4 py-3">
         <div className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 shadow-md border-2 border-white">
           <Image
             src="/UserImg.jpeg"
@@ -55,7 +55,7 @@ export default function StartMenu({ onClose }: StartMenuProps) {
       </div>
 
       {/* Body */}
-      <div className="flex" style={{ minHeight: 240 }}>
+      <div className="flex flex-1 min-h-0 overflow-y-auto">
         {/* Left column — pinned programs */}
         <div className="flex-1 bg-white border-r border-gray-200 py-2">
           <p className="text-xs font-bold text-gray-500 uppercase px-3 mb-1 tracking-wide">
@@ -114,7 +114,7 @@ export default function StartMenu({ onClose }: StartMenuProps) {
       </div>
 
       {/* Footer */}
-      <div className="xp-start-footer flex justify-end gap-2 px-3 py-2">
+      <div className="xp-start-footer shrink-0 flex justify-end gap-2 px-3 py-2">
         <button
           onClick={onClose}
           className="flex items-center gap-1.5 text-white text-xs hover:bg-white/20 px-2 py-1 rounded transition-colors"

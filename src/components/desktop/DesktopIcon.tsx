@@ -40,7 +40,7 @@ export default function DesktopIcon({ app }: DesktopIconProps) {
     >
       {/* Icon */}
       <div className="relative">
-        <img src={app.icon} className="w-25" alt={app.icon} />
+        <img src={app.icon} className="w-25 max-md:w-12" alt={app.icon} />
         {selected && (
           <div className="absolute inset-0 bg-blue-500/30 rounded" />
         )}

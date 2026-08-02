@@ -25,7 +25,7 @@ export default function TitleBar({
   onClose,
   onFocus,
 }: TitleBarProps) {
-  const { onMouseDown } = useDraggable({
+  const { onMouseDown, onTouchStart } = useDraggable({
     onMove,
     initialPosition: position,
     disabled: isMaximized,
@@ -37,9 +37,13 @@ export default function TitleBar({
         onFocus();
         onMouseDown(e);
       }}
+      onTouchStart={(e) => {
+        onFocus();
+        onTouchStart(e);
+      }}
       onDoubleClick={onMaximize}
       className="xp-titlebar flex items-center justify-between px-2 py-1 select-none cursor-default"
-      style={{ minHeight: 30 }}
+      style={{ minHeight: 30, touchAction: 'none' }}
     >
       {/* Left: icon + title */}
 

@@ -164,8 +164,8 @@ export default function ProjectsWindow() {
         </div>
 
         {/* Files grid */}
-        <div className="flex-1 overflow-y-auto p-3">
-          <div className="grid grid-cols-3 gap-2">
+        <div className="flex-1 overflow-y-auto p-3 @container">
+          <div className="grid grid-cols-2 @sm:grid-cols-3 gap-2">
             {PROJECTS.map((project) => (
               <button
                 key={project.id}

@@ -5,6 +5,8 @@ import { APP_REGISTRY } from '@/data/apps';
 interface WindowStore {
   windows: WindowState[];
   topZIndex: number;
+  viewport: { width: number; height: number };
+  setViewport: (size: { width: number; height: number }) => void;
   openWindow: (appId: AppId) => void;
   closeWindow: (id: string) => void;
   minimizeWindow: (id: string) => void;
@@ -17,17 +19,27 @@ interface WindowStore {
 
 let windowCounter = 0;
 
-function getDefaultPosition(index: number): { x: number; y: number } {
+function getDefaultPosition(
+  index: number,
+  size: { width: number; height: number }
+): { x: number; y: number } {
   const cascade = index * 30;
+  const maxX = Math.max(10, window.innerWidth - size.width - 10);
+  const maxY = Math.max(10, window.innerHeight - size.height - 50);
   return {
-    x: Math.min(80 + cascade, window.innerWidth - 400),
-    y: Math.min(60 + cascade, window.innerHeight - 300),
+    x: Math.max(10, Math.min(80 + cascade, maxX)),
+    y: Math.max(10, Math.min(60 + cascade, maxY)),
   };
 }
 
 export const useWindowStore = create<WindowStore>((set, get) => ({
   windows: [],
   topZIndex: 100,
+  viewport: {
+    width: typeof window !== 'undefined' ? window.innerWidth : 1280,
+    height: typeof window !== 'undefined' ? window.innerHeight : 800,
+  },
+  setViewport: (size) => set({ viewport: size }),
 
   openWindow: (appId: AppId) => {
     const { windows, topZIndex } = get();
@@ -63,7 +75,7 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
       isMaximized: false,
       zIndex: newZ,
       position: typeof window !== 'undefined'
-        ? getDefaultPosition(openCount)
+        ? getDefaultPosition(openCount, appDef.defaultSize)
         : { x: 80, y: 60 },
       size: appDef.defaultSize,
     };
