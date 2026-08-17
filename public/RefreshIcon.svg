@@ -1,0 +1,12 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rf-arrow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7ec46a"/>
+      <stop offset="100%" stop-color="#2f7d1f"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 10 A22 22 0 0 1 54 32 H46 A14 14 0 0 0 32 18 Z" fill="url(#rf-arrow)" stroke="#1c5a12" stroke-width="1.2"/>
+  <path d="M58 36 L50 46 L42 36 Z" fill="url(#rf-arrow)" stroke="#1c5a12" stroke-width="1.2"/>
+  <path d="M32 54 A22 22 0 0 1 10 32 H18 A14 14 0 0 0 32 46 Z" fill="url(#rf-arrow)" stroke="#1c5a12" stroke-width="1.2"/>
+  <path d="M6 28 L14 18 L22 28 Z" fill="url(#rf-arrow)" stroke="#1c5a12" stroke-width="1.2"/>
+</svg>

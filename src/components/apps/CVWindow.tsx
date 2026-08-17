@@ -1,13 +1,21 @@
 "use client";
 
-import { CV_CONTENT } from "@/data/cv";
-import { FileText, ExternalLink, FileType2 } from "lucide-react";
+import { CV } from "@/data/cv";
+import {
+  ExternalLink,
+  FileText,
+  FileType2,
+  Globe,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
 
 export default function CVWindow() {
   return (
     <div className="h-full flex flex-col bg-white font-mono text-sm">
       {/* Notepad menu bar */}
-      <div className="flex gap-0 text-xs border-b border-gray-300 bg-[#ECE9D8] px-1">
+      <div className="flex gap-0 text-xs border-b border-gray-300 bg-[#ECE9D8] px-1 shrink-0">
         {["File", "Edit", "Format", "View", "Help"].map((menu) => (
           <button
             key={menu}
@@ -22,179 +30,193 @@ export default function CVWindow() {
       <div className="flex-1 overflow-y-auto p-4 bg-white">
         {/* Header */}
         <div className="flex items-center gap-3 border-b border-gray-300 pb-3 mb-4">
-          <div className="bg-blue-100 p-2 rounded">
+          <div className="bg-blue-100 p-2 rounded shrink-0">
             <FileText size={30} />
           </div>
 
-          <div>
-            <h1 className="text-xl font-bold text-gray-900">
-              Mahmoud Maged Ragab
-            </h1>
+          <div className="min-w-0">
+            <h1 className="text-xl font-bold text-gray-900">{CV.name}</h1>
 
-            <p className="text-xs text-gray-600">
-              Frontend Developer | BIS Student
-            </p>
+            <p className="text-xs text-gray-600">{CV.title}</p>
           </div>
         </div>
-        <Section title="Contact">
-          <p>📞 +20 106 885 0668</p>
 
-          <p>
-            ✉️{" "}
+        <Section title="Contact">
+          <p className="flex items-center gap-1.5">
+            <Phone size={13} className="shrink-0" /> {CV.contact.phone}
+          </p>
+
+          <p className="flex items-center gap-1.5">
+            <Mail size={13} className="shrink-0" />
             <a
-              className="text-blue-600 hover:underline"
+              className="text-blue-600 hover:underline break-all"
               target="_blank"
-              href="mailto:Mahmoud.m.Ragab06@gmail.com"
+              rel="noopener noreferrer"
+              href={`mailto:${CV.contact.email}`}
             >
-              Mahmoud.m.Ragab06@gmail.com
+              {CV.contact.email}
             </a>
           </p>
 
-          <p>📍 Cairo, Egypt</p>
+          <p className="flex items-center gap-1.5">
+            <MapPin size={13} className="shrink-0" /> {CV.contact.location}
+          </p>
+
+          <p className="flex items-center gap-1.5">
+            <Globe size={13} className="shrink-0" />
+            <a
+              className="text-blue-600 hover:underline break-all"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`https://${CV.contact.portfolio}`}
+            >
+              {CV.contact.portfolio}
+            </a>
+          </p>
+
+          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1">
+            <a
+              className="text-blue-600 hover:underline break-all"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`https://${CV.contact.linkedin}`}
+            >
+              {CV.contact.linkedin}
+            </a>
+            <a
+              className="text-blue-600 hover:underline break-all"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`https://${CV.contact.github}`}
+            >
+              {CV.contact.github}
+            </a>
+          </div>
         </Section>
 
         <Section title="Professional Summary">
-          <p>
-            Frontend Developer and Business Information Systems student with
-            experience building responsive web applications using React.js and
-            Next.js. Focused on performance, usability and clean UI.
-          </p>
+          <p>{CV.summary}</p>
         </Section>
 
-        <Section title="Education">
-          <h3 className="font-bold">
-            Arab Academy for Science, Technology & Maritime Transport
-          </h3>
-
-          <p>Bachelor of Business Information Systems (BIS)</p>
-
-          <p>Expected Graduation: 2027</p>
-
-          <h3 className="font-bold mt-3">The American University in Cairo</h3>
-
-          <p>English Diploma (2024)</p>
-
-          <h3 className="font-bold mt-3">Route Learning Academy</h3>
-
-          <p>Front-End Diploma (2026)</p>
+        <Section title="Technical Skills">
+          <dl className="space-y-2">
+            {CV.skills.map((group) => (
+              <div key={group.label}>
+                <dt className="font-bold text-gray-800">{group.label}</dt>
+                <dd className="flex flex-wrap gap-1.5 mt-1">
+                  {group.items.map((item) => (
+                    <span
+                      key={item}
+                      className="px-2 py-0.5 bg-gray-200 border border-gray-400 rounded"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </Section>
 
-        <Section title="Experience">
-          <h3 className="font-bold">
-            Frontend Developer (Freelance) — 2025–Present
-          </h3>
+        <Section title="Professional Experience">
+          <div className="space-y-4">
+            {CV.experience.map((job) => (
+              <div key={`${job.role}-${job.company}`}>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+                  <h3 className="font-bold">
+                    {job.role}, {job.company}
+                  </h3>
+                  <span className="text-gray-500 shrink-0">{job.period}</span>
+                </div>
 
-          <ul className="list-disc ml-5">
-            <li>Developed responsive web applications</li>
-            <li>Improved UI and user experience</li>
-            <li>Optimized frontend performance</li>
-          </ul>
-          <br />
+                <ul className="list-disc ml-5 mt-1 space-y-0.5">
+                  {job.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
 
-          <h3 className="font-bold">
-            Backend Developer — BeeViro (April 2026 - Present)
-          </h3>
-
-          <ul className="list-disc ml-5">
-            <li>
-              Developed scalable backend systems and internal business tools
-            </li>
-            <li>Built workflow automations and integrated third-party APIs</li>
-            <li>
-              Designed system architecture, optimized backend performance, and
-              maintained reliable services
-            </li>
-          </ul>
-          <br />
-
-          <h3 className="font-bold">
-            Backend PHP Laravel Internship — July 2026
-          </h3>
-
-          <ul className="list-disc ml-5">
-            <li>Developed backend systems using PHP, Laravel, and MySQL</li>
-            <li>
-              Designed relational databases and implemented authentication and
-              CRUD functionality
-            </li>
-            <li>
-              Collaborated with the team to debug, optimize, and deploy web
-              applications
-            </li>
-          </ul>
-
-          <h3 className="font-bold mt-3">
-            Commercial International Bank (CIB) Internship — 2025
-          </h3>
-
-          <ul className="list-disc ml-5">
-            <li>Analyzed workflows</li>
-            <li>Supported process improvements</li>
-            <li>Evaluated operational data</li>
-          </ul>
-        </Section>
-
-        <Section title="Skills">
-          <div className="flex flex-wrap gap-2">
-            {[
-              "React",
-              "Next.js",
-              "TypeScript",
-              "JavaScript",
-              "PHP",
-              "Laravel",
-              "MySQL",
-              "PostgreSQL",
-              "Supabase",
-              "Prisma",
-              "REST APIs",
-              "Automation",
-              "System Design",
-              "Tailwind CSS",
-              "Git",
-              "GitHub",
-              "Docker",
-            ].map((skill) => (
-              <span
-                key={skill}
-                className="px-2 py-1 bg-gray-200 border border-gray-400 rounded"
-              >
-                {skill}
-              </span>
+                {job.note && (
+                  <p className="mt-1 text-gray-500 italic">Note: {job.note}</p>
+                )}
+              </div>
             ))}
           </div>
         </Section>
 
         <Section title="Projects">
-          <p className="font-bold">Social Hub</p>
+          <div className="space-y-3">
+            {CV.projects.map((project) => (
+              <div key={project.name}>
+                <p className="font-bold">
+                  {project.name}, {project.tagline}
+                </p>
+                <p>{project.description}</p>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-0.5">
+                  {project.live && (
+                    <a
+                      className="text-blue-600 hover:underline inline-flex items-center gap-1"
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Live site <ExternalLink size={12} />
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      className="text-blue-600 hover:underline inline-flex items-center gap-1"
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      GitHub <ExternalLink size={12} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
 
-          <a
-            className="text-blue-600 flex items-center gap-1"
-            href="https://mahmoud-maged-ragab.github.io/SocialHub--Your-place-for-communication/"
-            target="_blank"
-          >
-            View Project
-          </a>
-          <p className="font-bold mt-3">Fresh Cart</p>
+        <Section title="Education">
+          <div className="space-y-2">
+            {CV.education.map((item) => (
+              <div
+                key={item.credential}
+                className="flex flex-wrap items-baseline justify-between gap-x-3"
+              >
+                <div>
+                  <h3 className="font-bold">{item.credential}</h3>
+                  {item.institution && <p>{item.institution}</p>}
+                </div>
+                <span className="text-gray-500 shrink-0">{item.period}</span>
+              </div>
+            ))}
+          </div>
+        </Section>
 
-          <a
-            className="text-blue-600 flex items-center gap-1"
-            href="https://fresh-cart-8dia.vercel.app"
-            target="_blank"
-          >
-            View Project
-          </a>
+        <Section title="Certifications">
+          <ul className="list-disc ml-5 space-y-0.5">
+            {CV.certifications.map((cert) => (
+              <li key={cert}>{cert}</li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section title="Languages">
+          <p>{CV.languages}</p>
         </Section>
       </div>
-      <div className="mb-4">
+
+      <div className="shrink-0 border-t border-gray-300 bg-[#ECE9D8] px-4 py-2">
         <a
-          href="https://drive.google.com/file/d/1mPN5qQNq2ukz0EL3aabJybGNYDi-vsNC/view"
+          href={CV.file}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#ECE9D8] border border-gray-400 rounded shadow-sm hover:bg-blue-600 hover:text-white text-xs"
         >
           <FileType2 size={16} />
-          Open CV
+          Open CV (PDF)
           <ExternalLink size={14} />
         </a>
       </div>

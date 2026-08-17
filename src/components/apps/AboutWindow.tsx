@@ -7,8 +7,10 @@ import {
   Mail,
   MapPin,
   Target,
+  UserRound,
 } from "lucide-react";
 import Image from "next/image";
+import { CV } from "@/data/cv";
 // import UserImg from "../../public/UserImg.jpeg";
 
 export default function AboutWindow() {
@@ -43,6 +45,7 @@ export default function AboutWindow() {
               src="/UserImg.jpeg"
               alt="Mahmoud Maged"
               fill
+              sizes="80px"
               className="object-cover"
             />
           </div>
@@ -50,14 +53,12 @@ export default function AboutWindow() {
             <h1 className="text-xl font-bold text-gray-800">
               Mahmoud Maged Mahmoud Ragab
             </h1>
-            <p className="text-blue-600 font-semibold text-sm">
-              Frontend Developer
+            <p className="text-blue-600 font-semibold text-sm">{CV.title}</p>
+            <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
+              <MapPin size={14} /> {CV.contact.location}
             </p>
             <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
-              <MapPin size={14} /> Cairo, Egypt
-            </p>
-            <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
-              <Mail size={14} /> Mahmoud.m.ragab06@gmail.com
+              <Mail size={14} /> {CV.contact.email}
             </p>
           </div>
         </div>
@@ -68,16 +69,9 @@ export default function AboutWindow() {
         {/* About text */}
         <div>
           <h2 className="text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
-            <span>📋</span> About Me
+            <UserRound size={14} /> About Me
           </h2>
-          <p className="text-sm text-gray-700 leading-relaxed">
-            Frontend Developer and Business Information Systems (BIS) student at
-            Arab Academy for Science, Technology & Maritime Transport (AASTMT)
-            with hands-on experience building responsive, user-friendly web
-            applications using React.js and Next.js. Experienced in developing
-            modern frontend solutions with a strong focus on performance,
-            usability, and user experience
-          </p>
+          <p className="text-sm text-gray-700 leading-relaxed">{CV.summary}</p>
         </div>
 
         {/* Experience */}
@@ -89,34 +83,9 @@ export default function AboutWindow() {
             Experience
           </h2>
           <div className="space-y-3">
-            {[
-              {
-                role: "Frontend Developer (Freelance)",
-                company: "Freelance",
-                period: "2025 – Present",
-                desc: "Developed and maintained responsive web applications, improved website functionality and user experience, and optimized frontend performance.",
-              },
-              {
-                role: "Backend Developer",
-                company: "BeeViro",
-                period: "April 2026 - Present",
-                desc: "Designed and built scalable backend systems, workflow automations, and internal business tools. Developed RESTful APIs, designed relational databases, and implemented secure authentication and CRUD operations.",
-              },
-              {
-                role: "Backend PHP Laravel Intern",
-                company: "Pan Arab Media",
-                period: "July 2026",
-                desc: "Developed backend systems using PHP, Laravel, and MySQL. Designed relational databases and implemented authentication and CRUD functionality.",
-              },
-              {
-                role: "Intern",
-                company: "Commercial International Bank (CIB)",
-                period: "2025",
-                desc: "Monitored business operations, analyzed workflows, identified process improvements, evaluated operational data, and supported optimization initiatives.",
-              },
-            ].map((job) => (
+            {CV.experience.map((job) => (
               <div
-                key={job.role}
+                key={`${job.role}-${job.company}`}
                 className="bg-white border border-gray-300 rounded p-3 shadow-sm"
               >
                 <div className="flex justify-between items-start">
@@ -132,7 +101,17 @@ export default function AboutWindow() {
                   </span>
                 </div>
 
-                <p className="text-xs text-gray-600 mt-1">{job.desc}</p>
+                <ul className="text-xs text-gray-600 mt-1.5 list-disc ml-4 space-y-0.5">
+                  {job.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+
+                {job.note && (
+                  <p className="text-[11px] text-gray-500 italic mt-1">
+                    Note: {job.note}
+                  </p>
+                )}
               </div>
             ))}
           </div>

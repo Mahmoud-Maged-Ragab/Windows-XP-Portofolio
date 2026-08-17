@@ -18,7 +18,8 @@ export default function SystemClock() {
 
   return (
     <div className="flex items-center gap-1 px-2 py-0.5 bg-white/10 border-l border-white/20 text-white text-xs">
-      <span>🔊</span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/SoundIcon.svg" className="w-3.5 h-3.5 object-contain" alt="Volume" />
       <span>{time}</span>
     </div>
   );

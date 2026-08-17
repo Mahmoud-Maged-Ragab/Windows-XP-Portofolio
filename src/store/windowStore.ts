@@ -1,6 +1,7 @@
 import { create } from 'zustand';
-import { WindowState, AppId, AppDefinition } from '@/types';
+import { WindowState, AppId } from '@/types';
 import { APP_REGISTRY } from '@/data/apps';
+import { playSound } from '@/lib/sound';
 
 interface WindowStore {
   windows: WindowState[];
@@ -15,6 +16,7 @@ interface WindowStore {
   focusWindow: (id: string) => void;
   moveWindow: (id: string, position: { x: number; y: number }) => void;
   resizeWindow: (id: string, size: { width: number; height: number }) => void;
+  closeAllWindows: () => void;
 }
 
 let windowCounter = 0;
@@ -43,7 +45,13 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
 
   openWindow: (appId: AppId) => {
     const { windows, topZIndex } = get();
-    const appDef = APP_REGISTRY.find((a) => a.id === appId) as AppDefinition;
+    const appDef = APP_REGISTRY.find((a) => a.id === appId);
+
+    // Unknown/unregistered app — do nothing rather than crash on a dead link.
+    if (!appDef) {
+      console.warn(`openWindow: no app registered with id "${appId}"`);
+      return;
+    }
 
     // If already open, focus it instead
     const existing = windows.find((w) => w.appId === appId);
@@ -84,10 +92,12 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
       windows: [...s.windows, newWindow],
       topZIndex: newZ,
     }));
+    playSound('open');
   },
 
   closeWindow: (id: string) => {
     set((s) => ({ windows: s.windows.filter((w) => w.id !== id) }));
+    playSound('close');
   },
 
   minimizeWindow: (id: string) => {
@@ -143,4 +153,6 @@ export const useWindowStore = create<WindowStore>((set, get) => ({
       ),
     }));
   },
+
+  closeAllWindows: () => set({ windows: [] }),
 }));

@@ -21,6 +21,7 @@ export const PROJECTS: Project[] = [
       "Window z-index management",
       "Responsive mobile layout",
     ],
+    github: "https://github.com/Mahmoud-Maged-Ragab/Windows-XP-Portofolio",
     icon: "/WindowsXPICon.png",
   },
   {

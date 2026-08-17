@@ -17,6 +17,11 @@ button, a {
   touch-action: manipulation;
 }
 
+/* ─── Accessibility: large text preference ───────────────── */
+html.text-scale-large {
+  font-size: 16px;
+}
+
 /* ─── XP Taskbar ─────────────────────────────────────────── */
 .xp-taskbar {
   background: linear-gradient(to bottom,

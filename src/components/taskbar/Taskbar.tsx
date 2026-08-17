@@ -3,15 +3,29 @@
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useWindowStore } from "@/store/windowStore";
+import { APP_REGISTRY } from "@/data/apps";
+import { AppId } from "@/types";
 import StartButton from "./StartButton";
 import StartMenu from "./StartMenu";
 import SystemClock from "./SystemClock";
+import ContextMenu, { useContextMenu } from "@/components/system/ContextMenu";
+import TaskManagerDialog from "@/components/system/TaskManagerDialog";
+
+/** Taskbar buttons reuse each app’s own XP icon from the registry. */
+const APP_ICONS = APP_REGISTRY.reduce(
+  (map, app) => ({ ...map, [app.id]: app.icon }),
+  {} as Record<AppId, string>
+);
 
 export default function Taskbar() {
   const [startOpen, setStartOpen] = useState(false);
+  const [taskManagerOpen, setTaskManagerOpen] = useState(false);
+  const [activeWinId, setActiveWinId] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { windows, focusWindow, minimizeWindow, restoreWindow } =
+  const { windows, focusWindow, minimizeWindow, restoreWindow, closeWindow, openWindow } =
     useWindowStore();
+  const barMenu = useContextMenu();
+  const winMenu = useContextMenu();
 
   // Close start menu on outside click
   useEffect(() => {
@@ -38,8 +52,14 @@ export default function Taskbar() {
     }
   }
 
+  const activeWin = windows.find((w) => w.id === activeWinId) ?? null;
+
   return (
-    <div className="xp-taskbar absolute bottom-0 left-0 right-0 h-10 flex items-stretch z-[9999]">
+    <div
+      className="xp-taskbar absolute bottom-0 left-0 right-0 h-10 flex items-stretch z-[9999]"
+      onContextMenu={barMenu.openMenu}
+      {...barMenu.touchHandlers}
+    >
       {/* Start button area */}
       <div ref={menuRef} className="relative flex items-stretch">
         <StartButton
@@ -65,26 +85,28 @@ export default function Taskbar() {
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.15 }}
               onClick={() => handleTaskClick(win.id, win.isMinimized)}
+              onContextMenu={(e) => {
+                setActiveWinId(win.id);
+                winMenu.openMenu(e);
+              }}
+              onTouchStart={(e) => {
+                setActiveWinId(win.id);
+                winMenu.touchHandlers.onTouchStart(e);
+              }}
+              onTouchEnd={winMenu.touchHandlers.onTouchEnd}
+              onTouchMove={winMenu.touchHandlers.onTouchMove}
+              onTouchCancel={winMenu.touchHandlers.onTouchCancel}
               className={`xp-taskbar-btn flex items-center gap-1.5 px-2 py-0.5 h-7 max-w-[160px] min-w-[80px] text-xs text-left truncate shrink-0 ${
                 !win.isMinimized ? "xp-taskbar-btn-active" : ""
               }`}
               title={win.title}
             >
-              <span className="text-sm shrink-0">
-                {win.title.includes("Notepad")
-                  ? "📄"
-                  : win.title.includes("Projects")
-                    ? "📁"
-                    : win.title.includes("Skills")
-                      ? "⚙️"
-                      : win.title.includes("Contact")
-                        ? "✉️"
-                        : win.title.includes("Social")
-                          ? "🔗"
-                          : win.title.includes("About")
-                            ? "👤"
-                            : "🪟"}
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={APP_ICONS[win.appId] ?? "/WindowsXPICon.png"}
+                alt=""
+                className="w-4 h-4 object-contain shrink-0"
+              />
               <span className="truncate text-white">{win.title}</span>
             </motion.button>
           ))}
@@ -92,6 +114,57 @@ export default function Taskbar() {
       </div>
 
       <SystemClock />
+
+      <AnimatePresence>
+        {barMenu.menu && (
+          <ContextMenu
+            x={barMenu.menu.x}
+            y={barMenu.menu.y}
+            onClose={barMenu.closeMenu}
+            items={[
+              {
+                label: "Toolbars",
+                disabled: true,
+                disabledHint: "Not available in this demo",
+              },
+              { type: "separator" },
+              {
+                label: "Task Manager",
+                icon: "/TaskManagerIcon.svg",
+                onClick: () => setTaskManagerOpen(true),
+              },
+              { type: "separator" },
+              {
+                label: "Properties",
+                icon: "/GearIcon.png",
+                onClick: () => openWindow("controlPanel"),
+              },
+            ]}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {winMenu.menu && activeWin && (
+          <ContextMenu
+            x={winMenu.menu.x}
+            y={winMenu.menu.y}
+            onClose={winMenu.closeMenu}
+            items={[
+              activeWin.isMinimized
+                ? { label: "Restore", onClick: () => restoreWindow(activeWin.id) }
+                : { label: "Minimize", onClick: () => minimizeWindow(activeWin.id) },
+              { label: "Close", onClick: () => closeWindow(activeWin.id) },
+            ]}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {taskManagerOpen && (
+          <TaskManagerDialog onClose={() => setTaskManagerOpen(false)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

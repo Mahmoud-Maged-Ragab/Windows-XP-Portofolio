@@ -10,20 +10,21 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Portfolio Mahmoud Ragab",
   description:
-    "Personal portfolio of Mahmoud Maged Mahmoud Ragab, a Frontend Developer specializing in React, Next.js, and TypeScript. Presented as an interactive Windows XP desktop experience.",
+    "Personal portfolio of Mahmoud Maged Ragab, a Software Engineer working across full-stack development and business technology with React.js, Next.js, and Laravel. Presented as an interactive Windows XP desktop experience.",
   keywords: [
-    "frontend developer",
+    "software engineer",
+    "full-stack developer",
     "react",
     "nextjs",
-    "typescript",
+    "laravel",
+    "business information systems",
     "portfolio",
-    "web developer",
   ],
   authors: [{ name: "Mahmoud Maged" }],
   openGraph: {
-    title: "Mahmoud Maged — Frontend Developer Portfolio",
+    title: "Mahmoud Maged — Software Engineer Portfolio",
     description:
-      "An interactive Windows XP-themed portfolio showcasing my projects, skills, and experience as a Frontend Developer.",
+      "An interactive Windows XP-themed portfolio showcasing my projects, skills, and experience as a Software Engineer.",
     type: "website",
     locale: "en_US",
     url: "https://mahmoud-maged-portofolio.vercel.app",
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mahmoud Maged — Frontend Developer",
+    title: "Mahmoud Maged — Software Engineer",
     description: "Interactive Windows XP-themed developer portfolio",
     creator: "@yourhandle",
   },

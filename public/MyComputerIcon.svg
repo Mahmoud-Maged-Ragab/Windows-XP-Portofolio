@@ -1,0 +1,39 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mc-case" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbfbf6"/>
+      <stop offset="45%" stop-color="#e2e2d8"/>
+      <stop offset="100%" stop-color="#b6b6ab"/>
+    </linearGradient>
+    <linearGradient id="mc-case-top" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#dcdcd1"/>
+    </linearGradient>
+    <linearGradient id="mc-screen" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#8fd0f2"/>
+      <stop offset="45%" stop-color="#2f7fc1"/>
+      <stop offset="100%" stop-color="#12406f"/>
+    </linearGradient>
+    <linearGradient id="mc-glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- CRT monitor -->
+  <rect x="11" y="5" width="42" height="33" rx="3.5" fill="url(#mc-case)" stroke="#6e6e66" stroke-width="1.4"/>
+  <rect x="14.5" y="8.5" width="35" height="24" rx="1.5" fill="#2a2a28" stroke="#4a4a45" stroke-width="1"/>
+  <rect x="16" y="10" width="32" height="21" rx="1" fill="url(#mc-screen)"/>
+  <path d="M16 10 h32 v6 c-11 4 -21 5 -32 8 Z" fill="url(#mc-glass)"/>
+  <rect x="20" y="34.5" width="24" height="1.6" rx="0.8" fill="#9d9d93"/>
+
+  <!-- Desktop case the monitor sits on -->
+  <path d="M7 41 h50 l-3.5 -3 h-43 Z" fill="url(#mc-case-top)" stroke="#6e6e66" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="7" y="41" width="50" height="13" rx="2" fill="url(#mc-case)" stroke="#6e6e66" stroke-width="1.4"/>
+  <rect x="11" y="44" width="20" height="3.4" rx="1" fill="#d6d6cb" stroke="#8f8f85" stroke-width="0.9"/>
+  <rect x="11" y="49.5" width="14" height="2" rx="1" fill="#c9c9be" stroke="#8f8f85" stroke-width="0.8"/>
+  <circle cx="49" cy="50" r="1.8" fill="#3fd06a" stroke="#1d7a3a" stroke-width="0.7"/>
+  <circle cx="43" cy="50" r="1.5" fill="#e8e8dd" stroke="#8f8f85" stroke-width="0.7"/>
+  <rect x="12" y="54" width="6" height="2.5" rx="1" fill="#8f8f85"/>
+  <rect x="46" y="54" width="6" height="2.5" rx="1" fill="#8f8f85"/>
+</svg>
