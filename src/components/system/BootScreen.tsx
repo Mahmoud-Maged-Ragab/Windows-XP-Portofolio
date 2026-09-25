@@ -9,7 +9,8 @@ export default function BootScreen({
       style={{ background: "#3a7ebf" }}
     >
       <div className="text-center text-white">
-        <div className="text-5xl mb-4">⊞</div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/WindowsXPICon.png" className="w-12 h-12 mx-auto mb-4 object-contain" alt="" />
         <p className="text-lg font-bold">{message}</p>
         <div className="mt-4 flex gap-1 justify-center">
           {[0, 1, 2, 3].map((i) => (

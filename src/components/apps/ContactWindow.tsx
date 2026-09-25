@@ -4,7 +4,6 @@ import { Mail } from "lucide-react";
 import {
   Linkedin02Icon,
   Github01Icon,
-  WebProgrammingIcon,
 } from "hugeicons-react";
 
 export default function ContactWindow() {
@@ -25,9 +24,7 @@ export default function ContactWindow() {
       <div className="flex-1 overflow-y-auto p-5 space-y-5">
         {/* Header */}
         <div className="flex items-center gap-3">
-          <span className="text-3xl">
-            <Mail />
-          </span>
+          <Mail size={28} className="text-gray-800 shrink-0" aria-hidden="true" />
           <div>
             <h2 className="text-base font-bold text-gray-800">Get in Touch</h2>
             <p className="text-xs text-gray-600">
@@ -41,8 +38,8 @@ export default function ContactWindow() {
             {
               icon: Mail,
               label: "Email",
-              value: "Mahmoud.m.ragab@gmail.com",
-              href: "mailto:Mahmoud.m.ragab@gmail.com",
+              value: "Mahmoud.m.Ragab06@gmail.com",
+              href: "mailto:Mahmoud.m.Ragab06@gmail.com",
             },
             {
               icon: Linkedin02Icon,
@@ -67,9 +64,7 @@ export default function ContactWindow() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 p-2.5 bg-white border border-gray-300 rounded shadow-sm hover:bg-blue-50 hover:border-blue-400 transition-colors"
               >
-                <span className="text-xl">
-                  {typeof Icon === "string" ? Icon : <Icon size={22} />}
-                </span>
+                <Icon size={22} strokeWidth={2} className="shrink-0" aria-hidden="true" />
 
                 <div>
                   <p className="text-xs font-bold text-gray-800">

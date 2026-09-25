@@ -105,6 +105,18 @@ export const CERTIFICATES: Certificate[] = [
     credentialId: "6w74cr35r2",
   },
   {
+    id: "nbe-internship-program-2026",
+    title: "Certificate of Completion — NBE Internship Program 2026",
+    organization: "National Bank of Egypt",
+    instructor: "Yasmine Wahid, Chief Human Resources Officer",
+    date: "2026-09-03",
+    category: "business",
+    file: "/certificates/nbe-internship-program-2026.jpeg",
+    fileType: "image",
+    description:
+      "Awarded for enthusiasm, contribution and commitment in successfully fulfilling the NBE Internship Program from August 9 to September 3, 2026.",
+  },
+  {
     id: "cib-summer-internship-2025",
     title: 'Certificate of Attendance — CIB Summer Program "The Green Leap"',
     organization: "Commercial International Bank (CIB)",

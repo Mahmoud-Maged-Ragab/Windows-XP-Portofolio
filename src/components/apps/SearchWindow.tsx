@@ -6,13 +6,15 @@ import { SKILLS } from "@/data/skills";
 import { DOCUMENTS } from "@/data/documents";
 import { CERTIFICATES } from "@/data/certificates";
 import { useWindowStore } from "@/store/windowStore";
-import { AppId } from "@/types";
+import { AppId, IconSource } from "@/types";
+import { Award, FileText, Search } from "lucide-react";
+import AppIcon from "@/components/system/AppIcon";
 
 interface Result {
   id: string;
   title: string;
   subtitle: string;
-  icon: string;
+  icon: IconSource;
   appId: AppId;
 }
 
@@ -65,7 +67,7 @@ export default function SearchWindow() {
           id: `doc-${d.id}`,
           title: d.name,
           subtitle: "Document",
-          icon: "/NotepadIcon.svg",
+          icon: FileText,
           appId: "myDocuments",
         });
       }
@@ -82,7 +84,7 @@ export default function SearchWindow() {
           id: `cert-${c.id}`,
           title: c.title,
           subtitle: `Certificate — ${c.organization}`,
-          icon: "/CertificateIcon.svg",
+          icon: Award,
           appId: "certificates",
         });
       }
@@ -106,8 +108,7 @@ export default function SearchWindow() {
 
       <div className="p-3 border-b border-gray-400 shrink-0">
         <div className="flex items-center gap-2 bg-white border border-gray-400 px-2 py-1.5 rounded-sm">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/SearchIcon.svg" className="w-4 h-4" alt="" />
+          <AppIcon icon={Search} size={16} className="text-gray-500" />
           <input
             autoFocus
             value={query}
@@ -137,8 +138,7 @@ export default function SearchWindow() {
                   onClick={() => openWindow(r.appId)}
                   className="w-full flex items-center gap-3 bg-white border border-gray-300 rounded px-3 py-2 hover:bg-blue-50 hover:border-blue-400 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={r.icon} className="w-6 h-6 object-contain shrink-0" alt="" />
+                  <AppIcon icon={r.icon} size={24} className="text-[#1F4E9C]" />
                   <span className="min-w-0">
                     <span className="block text-xs font-semibold text-gray-800 truncate">
                       {r.title}

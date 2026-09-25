@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Eraser, Save } from "lucide-react";
+import { ICON_STROKE } from "@/components/system/AppIcon";
 
 const COLORS = [
   "#000000",
@@ -132,16 +134,14 @@ export default function PaintWindow() {
           onClick={clearCanvas}
           className="xp-btn text-xs px-2 py-1 inline-flex items-center gap-1.5"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/EraserIcon.svg" className="w-4 h-4 object-contain" alt="" />
+          <Eraser size={16} strokeWidth={ICON_STROKE} aria-hidden="true" />
           Clear
         </button>
         <button
           onClick={saveImage}
           className="xp-btn text-xs px-2 py-1 inline-flex items-center gap-1.5"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/SaveIcon.svg" className="w-4 h-4 object-contain" alt="" />
+          <Save size={16} strokeWidth={ICON_STROKE} aria-hidden="true" />
           Save as PNG
         </button>
       </div>

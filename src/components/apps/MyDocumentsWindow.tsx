@@ -4,7 +4,9 @@ import { useState } from "react";
 import { DOCUMENTS } from "@/data/documents";
 import { DocumentEntry } from "@/types";
 import { useWindowStore } from "@/store/windowStore";
+import { FileText } from "lucide-react";
 import NotepadViewer from "./NotepadViewer";
+import { ICON_STROKE } from "@/components/system/AppIcon";
 
 export default function MyDocumentsWindow() {
   const [selected, setSelected] = useState<DocumentEntry | null>(null);
@@ -69,8 +71,7 @@ export default function MyDocumentsWindow() {
                     className="flex items-center gap-2 text-left w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded"
                     aria-label={`Open ${doc.name}`}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/NotepadIcon.svg" className="w-5 h-5 shrink-0" alt="" />
+                    <FileText size={20} strokeWidth={ICON_STROKE} className="text-[#1F4E9C] shrink-0" aria-hidden="true" />
                     <span className="text-gray-800 truncate">{doc.name}</span>
                   </button>
                 </td>

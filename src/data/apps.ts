@@ -1,6 +1,22 @@
+import {
+  Award,
+  Calculator,
+  CircleHelp,
+  NotebookPen,
+  Palette,
+  Search,
+  SquareTerminal,
+} from "lucide-react";
 import { AppDefinition } from "@/types";
 
 export const APP_REGISTRY: AppDefinition[] = [
+  {
+    id: "myComputer",
+    title: "My Computer",
+    icon: "/Windows_XP_My_Computer_Icon.png",
+    defaultSize: { width: 680, height: 480 },
+    minSize: { width: 480, height: 360 },
+  },
   {
     id: "about",
     title: "About Me",
@@ -30,27 +46,6 @@ export const APP_REGISTRY: AppDefinition[] = [
     minSize: { width: 400, height: 300 },
   },
   {
-    id: "contact",
-    title: "Contact",
-    icon: "/tumblr_28f7d41869ff8aec052777020eeb6242_385b0d2b_540.png",
-    defaultSize: { width: 520, height: 440 },
-    minSize: { width: 380, height: 300 },
-  },
-  {
-    id: "certificates",
-    title: "Certificates",
-    icon: "/CertificateIcon.svg",
-    defaultSize: { width: 900, height: 650 },
-    minSize: { width: 480, height: 400 },
-  },
-  {
-    id: "myComputer",
-    title: "My Computer",
-    icon: "/MyComputerIcon.svg",
-    defaultSize: { width: 680, height: 480 },
-    minSize: { width: 480, height: 360 },
-  },
-  {
     id: "myDocuments",
     title: "My Documents",
     icon: "/FolderIcon.png",
@@ -58,9 +53,23 @@ export const APP_REGISTRY: AppDefinition[] = [
     minSize: { width: 480, height: 360 },
   },
   {
+    id: "certificates",
+    title: "Certificates",
+    icon: Award,
+    defaultSize: { width: 900, height: 650 },
+    minSize: { width: 480, height: 400 },
+  },
+  {
+    id: "contact",
+    title: "Contact",
+    icon: "/tumblr_28f7d41869ff8aec052777020eeb6242_385b0d2b_540.png",
+    defaultSize: { width: 520, height: 440 },
+    minSize: { width: 380, height: 300 },
+  },
+  {
     id: "notepad",
     title: "Notepad",
-    icon: "/NotepadIcon.svg",
+    icon: NotebookPen,
     defaultSize: { width: 520, height: 440 },
     minSize: { width: 360, height: 280 },
     showOnDesktop: false,
@@ -84,7 +93,7 @@ export const APP_REGISTRY: AppDefinition[] = [
   {
     id: "search",
     title: "Search Results",
-    icon: "/SearchIcon.svg",
+    icon: Search,
     defaultSize: { width: 560, height: 460 },
     minSize: { width: 400, height: 320 },
     showOnDesktop: false,
@@ -92,7 +101,7 @@ export const APP_REGISTRY: AppDefinition[] = [
   {
     id: "helpAndSupport",
     title: "Help and Support Center",
-    icon: "/HelpIcon.svg",
+    icon: CircleHelp,
     defaultSize: { width: 640, height: 480 },
     minSize: { width: 460, height: 360 },
     showOnDesktop: false,
@@ -100,7 +109,7 @@ export const APP_REGISTRY: AppDefinition[] = [
   {
     id: "calculator",
     title: "Calculator",
-    icon: "/CalculatorIcon.svg",
+    icon: Calculator,
     defaultSize: { width: 260, height: 380 },
     minSize: { width: 240, height: 360 },
     showOnDesktop: false,
@@ -108,7 +117,7 @@ export const APP_REGISTRY: AppDefinition[] = [
   {
     id: "paint",
     title: "Paint",
-    icon: "/PaintIcon.svg",
+    icon: Palette,
     defaultSize: { width: 620, height: 480 },
     minSize: { width: 420, height: 360 },
     showOnDesktop: false,
@@ -116,7 +125,7 @@ export const APP_REGISTRY: AppDefinition[] = [
   {
     id: "commandPrompt",
     title: "Command Prompt",
-    icon: "/CommandPromptIcon.svg",
+    icon: SquareTerminal,
     defaultSize: { width: 600, height: 400 },
     minSize: { width: 420, height: 280 },
     showOnDesktop: false,

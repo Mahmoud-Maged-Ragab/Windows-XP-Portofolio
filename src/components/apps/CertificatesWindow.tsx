@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Award, ExternalLink, Search, X } from "lucide-react";
+import { ICON_STROKE } from "@/components/system/AppIcon";
 import { CERTIFICATES, CERTIFICATE_CATEGORIES } from "@/data/certificates";
 import { Certificate } from "@/types";
 
@@ -142,8 +144,7 @@ export default function CertificatesWindow() {
       {/* Search + sort toolbar */}
       <div className="flex flex-wrap items-center gap-2 px-2 py-1.5 border-b border-gray-400 bg-[#ECE9D8] shrink-0">
         <div className="flex-1 min-w-[160px] flex items-center gap-1.5 bg-white border border-gray-400 rounded-sm px-2 py-1">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/SearchIcon.svg" className="w-3.5 h-3.5 shrink-0" alt="" />
+          <Search size={14} strokeWidth={ICON_STROKE} className="text-gray-500 shrink-0" aria-hidden="true" />
           <input
             type="text"
             value={query}
@@ -229,8 +230,7 @@ export default function CertificatesWindow() {
           <div className="flex-1 overflow-y-auto p-3 @container">
             {filtered.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center gap-2 text-center text-gray-500 px-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/CertificateIcon.svg" className="w-10 h-10 opacity-60" alt="" />
+                <Award size={40} strokeWidth={ICON_STROKE} className="text-gray-400" aria-hidden="true" />
                 <p className="text-sm font-semibold text-gray-600">
                   No certificates found
                 </p>
@@ -282,29 +282,7 @@ function CertificateCard({
       className="group flex flex-col text-left bg-white border border-gray-300 rounded shadow-sm hover:shadow-md hover:border-blue-400 transition-all overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
     >
       <div className="relative w-full aspect-[4/3] bg-[#ECE9D8] border-b border-gray-300 overflow-hidden">
-        {cert.fileType === "image" ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={cert.file}
-            alt={`${cert.title} certificate`}
-            loading="lazy"
-            className="w-full h-full object-contain p-1.5 group-hover:scale-105 transition-transform duration-200"
-          />
-        ) : (
-          /* PDF certificates show the XP certificate icon in the list view, and
-             the real document itself in the viewer. */
-          <span className="w-full h-full flex flex-col items-center justify-center gap-1">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/CertificateIcon.svg"
-              alt=""
-              className="w-14 h-14 group-hover:scale-105 transition-transform duration-200"
-            />
-            <span className="text-[10px] text-gray-500">
-              Click to view document
-            </span>
-          </span>
-        )}
+        <CertificateThumbnail cert={cert} />
         <span className="absolute top-1 right-1 text-[9px] font-bold bg-white/85 border border-gray-300 text-gray-600 rounded px-1 leading-4">
           {fileTag(cert)}
         </span>
@@ -324,6 +302,100 @@ function CertificateCard({
         </div>
       </div>
     </button>
+  );
+}
+
+/** Rendered width of a PDF thumbnail — about 2x the widest card, so it stays sharp on high-DPI screens. */
+const PDF_THUMB_WIDTH = 480;
+
+/**
+ * First-page previews, keyed by file path. Shared across mounts so switching
+ * categories or re-sorting never re-renders a PDF that's already been drawn.
+ */
+const pdfThumbCache = new Map<string, Promise<string>>();
+
+function renderPdfThumbnail(file: string): Promise<string> {
+  const cached = pdfThumbCache.get(file);
+  if (cached) return cached;
+
+  const task = (async () => {
+    // Loaded on demand so pdf.js only ships to visitors who open this window.
+    const pdfjs = await import("pdfjs-dist");
+    pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+      "pdfjs-dist/build/pdf.worker.min.mjs",
+      import.meta.url
+    ).toString();
+
+    const loadingTask = pdfjs.getDocument({ url: file });
+    try {
+      const doc = await loadingTask.promise;
+      const page = await doc.getPage(1);
+      const viewport = page.getViewport({
+        scale: PDF_THUMB_WIDTH / page.getViewport({ scale: 1 }).width,
+      });
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(viewport.width);
+      canvas.height = Math.ceil(viewport.height);
+      await page.render({ canvas, viewport }).promise;
+      return canvas.toDataURL("image/jpeg", 0.85);
+    } finally {
+      loadingTask.destroy();
+    }
+  })();
+
+  // A failed render isn't cached, so the next mount gets another attempt.
+  task.catch(() => pdfThumbCache.delete(file));
+  pdfThumbCache.set(file, task);
+  return task;
+}
+
+/**
+ * The card's preview: image certificates show the image itself, PDFs show a
+ * rendered first page. Anything that can't be previewed (missing file,
+ * unreadable PDF) falls back to the certificate icon.
+ */
+function CertificateThumbnail({ cert }: { cert: Certificate }) {
+  const [pdfSrc, setPdfSrc] = useState<string | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    if (cert.fileType !== "pdf") return;
+    let active = true;
+    renderPdfThumbnail(cert.file)
+      .then((src) => active && setPdfSrc(src))
+      .catch(() => active && setFailed(true));
+    return () => {
+      active = false;
+    };
+  }, [cert.file, cert.fileType]);
+
+  const src = cert.fileType === "image" ? cert.file : pdfSrc;
+
+  if (failed || !src) {
+    return (
+      <span className="w-full h-full flex flex-col items-center justify-center gap-1">
+        <Award
+          size={56}
+          strokeWidth={ICON_STROKE}
+          className="text-[#1F4E9C] group-hover:scale-105 transition-transform duration-200"
+          aria-hidden="true"
+        />
+        <span className="text-[10px] text-gray-500">
+          {failed ? "Click to view document" : "Loading preview..."}
+        </span>
+      </span>
+    );
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt={`${cert.title} certificate`}
+      loading="lazy"
+      onError={() => setFailed(true)}
+      className="w-full h-full object-contain p-1.5 group-hover:scale-105 transition-transform duration-200"
+    />
   );
 }
 
@@ -374,8 +446,7 @@ function CertificateViewer({
         className="xp-window w-full max-w-2xl max-h-full flex flex-col bg-white"
       >
         <div className="xp-titlebar flex items-center gap-2 px-2 py-1 shrink-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/CertificateIcon.svg" className="w-4 h-4 shrink-0" alt="" />
+          <Award size={16} strokeWidth={ICON_STROKE} className="text-white shrink-0" aria-hidden="true" />
           <span className="flex-1 min-w-0 text-white text-xs font-bold truncate drop-shadow-sm">
             {cert.title}
           </span>
@@ -384,7 +455,7 @@ function CertificateViewer({
             className="xp-btn-close w-[18px] h-[18px] flex items-center justify-center text-white text-xs font-bold rounded-sm leading-none shrink-0"
             aria-label="Close certificate preview"
           >
-            ✕
+            <X size={12} strokeWidth={3} aria-hidden="true" />
           </button>
         </div>
 
@@ -416,8 +487,7 @@ function CertificateViewer({
               className="w-full aspect-[1.45/1] max-h-[70vh] bg-[#ECE9D8] border border-gray-300 rounded"
             >
               <div className="h-full flex flex-col items-center justify-center gap-2 p-4 text-center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/CertificateIcon.svg" className="w-12 h-12" alt="" />
+                <Award size={48} strokeWidth={ICON_STROKE} className="text-[#1F4E9C]" aria-hidden="true" />
                 <p className="text-xs text-gray-600">
                   This browser cannot display the PDF inline.
                 </p>
@@ -472,7 +542,7 @@ function CertificateViewer({
             rel="noopener noreferrer"
             className="xp-btn-primary inline-flex items-center gap-1.5 text-xs px-3 py-1.5"
           >
-            Open original certificate <span aria-hidden="true">↗</span>
+            Open original certificate <ExternalLink size={12} aria-hidden="true" />
           </a>
         </div>
       </motion.div>

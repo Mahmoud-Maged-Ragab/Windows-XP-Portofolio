@@ -4,14 +4,17 @@ import { useState } from "react";
 import { useSystemStore } from "@/store/systemStore";
 import { useWindowStore } from "@/store/windowStore";
 import { playSound } from "@/lib/sound";
+import { Accessibility, Monitor, Volume2 } from "lucide-react";
+import { IconSource } from "@/types";
+import AppIcon from "@/components/system/AppIcon";
 
 type Applet = "display" | "sounds" | "accessibility" | "system";
 
-const APPLETS: { id: Applet; label: string; icon: string }[] = [
-  { id: "display", label: "Display", icon: "/DisplayIcon.svg" },
-  { id: "sounds", label: "Sounds", icon: "/SoundIcon.svg" },
-  { id: "accessibility", label: "Accessibility", icon: "/AccessibilityIcon.svg" },
-  { id: "system", label: "System", icon: "/MyComputerIcon.svg" },
+const APPLETS: { id: Applet; label: string; icon: IconSource }[] = [
+  { id: "display", label: "Display", icon: Monitor },
+  { id: "sounds", label: "Sounds", icon: Volume2 },
+  { id: "accessibility", label: "Accessibility", icon: Accessibility },
+  { id: "system", label: "System", icon: "/Windows_XP_My_Computer_Icon.png" },
 ];
 
 function ToggleRow({
@@ -90,8 +93,7 @@ function SoundsApplet() {
         onClick={() => playSound("click")}
         className="xp-btn text-xs px-3 py-1 inline-flex items-center gap-1.5"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/SoundIcon.svg" className="w-4 h-4 object-contain" alt="" />
+        <AppIcon icon={Volume2} size={16} />
         Test Sound
       </button>
     </div>
@@ -162,8 +164,7 @@ export default function ControlPanelWindow() {
                   : "text-gray-800 hover:bg-blue-100"
               }`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={a.icon} className="w-5 h-5 object-contain shrink-0" alt="" />
+              <AppIcon icon={a.icon} size={20} />
               <span>{a.label}</span>
             </button>
           ))}

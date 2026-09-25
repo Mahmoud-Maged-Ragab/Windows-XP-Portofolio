@@ -1,5 +1,6 @@
 "use client";
 
+import { FileText, Monitor, RotateCw } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
 import { playSound } from "@/lib/sound";
@@ -147,25 +148,25 @@ export default function Desktop() {
             items={[
               {
                 label: iconSize === "large" ? "Large Icons (on)" : "Large Icons",
-                icon: "/DisplayIcon.svg",
+                icon: Monitor,
                 onClick: () =>
                   setIconSize(iconSize === "large" ? "normal" : "large"),
               },
               {
                 label: "Refresh",
-                icon: "/RefreshIcon.svg",
+                icon: RotateCw,
                 onClick: () => setDesktopClick((n) => n + 1),
               },
               { type: "separator" },
               {
                 label: "New Text Document",
-                icon: "/NotepadIcon.svg",
+                icon: FileText,
                 onClick: () => openWindow("notepad"),
               },
               { type: "separator" },
               {
                 label: "Properties",
-                icon: "/MyComputerIcon.svg",
+                icon: "/Windows_XP_My_Computer_Icon.png",
                 onClick: () => openWindow("systemProperties"),
               },
             ]}

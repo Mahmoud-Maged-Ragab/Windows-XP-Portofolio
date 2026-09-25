@@ -2,12 +2,14 @@
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { IconSource } from "@/types";
+import AppIcon from "./AppIcon";
 
 export interface ContextMenuItem {
   type?: "item" | "separator";
   label?: string;
-  /** Path to an icon image under /public (XP-style asset) — optional. */
-  icon?: string;
+  /** XP artwork path under /public, or a lucide-react icon — optional. */
+  icon?: IconSource;
   onClick?: () => void;
   disabled?: boolean;
   disabledHint?: string;
@@ -82,10 +84,7 @@ export default function ContextMenu({ x, y, items, onClose }: ContextMenuProps) 
             }`}
           >
             <span className="w-4 h-4 shrink-0 flex items-center justify-center" aria-hidden="true">
-              {item.icon && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={item.icon} alt="" className="w-4 h-4 object-contain" />
-              )}
+              {item.icon && <AppIcon icon={item.icon} size={16} />}
             </span>
             <span>{item.label}</span>
           </button>

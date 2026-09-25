@@ -3,6 +3,7 @@
 import { useWindowStore } from "@/store/windowStore";
 import { APP_REGISTRY } from "@/data/apps";
 import XPDialog from "./XPDialog";
+import AppIcon from "./AppIcon";
 
 export default function TaskManagerDialog({ onClose }: { onClose: () => void }) {
   const windows = useWindowStore((s) => s.windows);
@@ -27,10 +28,7 @@ export default function TaskManagerDialog({ onClose }: { onClose: () => void }) 
             const app = APP_REGISTRY.find((a) => a.id === w.appId);
             return (
               <div key={w.id} className="flex items-center gap-2 px-2 py-1.5">
-                {app?.icon && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={app.icon} className="w-4 h-4 shrink-0" alt="" />
-                )}
+                {app?.icon && <AppIcon icon={app.icon} size={16} className="text-[#1F4E9C]" />}
                 <span className="flex-1 min-w-0 truncate text-xs text-gray-800">
                   {w.title}
                   {w.isMinimized && (

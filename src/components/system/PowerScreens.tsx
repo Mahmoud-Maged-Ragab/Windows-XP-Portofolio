@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Power } from "lucide-react";
 import BootScreen from "./BootScreen";
+import { ICON_STROKE } from "./AppIcon";
 
 const SKY = { background: "linear-gradient(to bottom, #1a5bb5 0%, #0a246a 100%)" };
 
@@ -93,8 +95,7 @@ export function PoweredOffScreen({ onPowerOn }: { onPowerOn: () => void }) {
           className="mx-auto flex flex-col items-center gap-2 group focus:outline-none"
         >
           <span className="w-16 h-16 rounded-full bg-white/10 border-2 border-white/60 flex items-center justify-center group-hover:bg-white/20 group-focus-visible:bg-white/20 transition-colors">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/PowerIcon.svg" className="w-8 h-8 object-contain" alt="" />
+            <Power size={32} strokeWidth={ICON_STROKE} aria-hidden="true" />
           </span>
           <span className="text-xs text-blue-100">Press to turn on</span>
         </button>

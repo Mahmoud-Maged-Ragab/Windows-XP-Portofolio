@@ -25,16 +25,19 @@ engineering, based in Cairo, Egypt.
 I build responsive web applications with React.js and Next.js, with a strong
 focus on performance, usability, and clean UI — this portfolio itself is one
 example, built as a fully interactive Windows XP desktop simulation rather
-than a static page.
+than a static page. On the backend side I have built independent projects
+with Node.js, Fastify, and Supabase, including a financial ERP system and a
+customer support portal.
 
 Alongside freelance frontend work I picked up backend exposure through a
 PHP/Laravel internship at Pan Arab Media, and I currently work part-time at
 Beeviro on their web-builder platform, automation workflows, and AI chatbot
 tooling. Internships at Commercial International Bank (CIB) and in Credit
 Administration at the National Bank of Egypt gave me direct exposure to
-banking and business operations.
+banking and business operations — and at NBE I also built a web app on
+financial inclusion awareness and the bank's related achievements.
 
-I'd welcome the chance to bring that mix of frontend engineering and business
+I'd welcome the chance to bring that mix of full-stack engineering and business
 understanding to your team.
 
 Best regards,
@@ -47,6 +50,22 @@ Mahmoud Maged Ragab`,
     content: `PROJECT NOTES
 =============
 
+NBE Financial Inclusion
+  Built during the Credit Administration internship at the National Bank
+  of Egypt — a web app presenting financial inclusion awareness content
+  and NBE's related achievements. Built with Next.js, TypeScript, and
+  Tailwind CSS.
+
+BeeViro Financial ERP System
+  Financial ERP system — a full accounting suite with invoicing, expense
+  tracking, financial reporting, and role-based permissions. Built with
+  Vite, Node.js, and Fastify.
+
+Revenue Lab 360 Support
+  Self-service customer support portal — common issues and solutions, a
+  way to submit unresolved problems from the site, and automatic
+  notifications to the support team. Built with Next.js and Supabase.
+
 Windows XP Portfolio
   This site. Next.js + TypeScript + Tailwind CSS + Framer Motion + Zustand.
   Draggable/resizable-viewport windows, taskbar, Start Menu, desktop icons,
@@ -55,8 +74,8 @@ Windows XP Portfolio
 
 Social Hub
   Facebook-inspired social platform — profiles, posts, likes/comments,
-  real-time messaging, a personalized feed. Built with React, TypeScript,
-  and Tailwind CSS.
+  a personalized feed, and a responsive UI. Built with React (JavaScript),
+  Vite, and Tailwind CSS.
 
 Fresh Cart
   Amazon-inspired e-commerce app — product catalog with search/filtering,
@@ -93,7 +112,9 @@ chatbot tooling to cut down manual support work.
 
 The bank internships were another lesson entirely — less code, more process:
 CIB on analyzing workflows and operations, and Credit Administration at NBE
-on how credit actually moves through a bank. That perspective is easy to
+on how credit actually moves through a bank — plus a chance to put code
+back in the picture with a web app on financial inclusion awareness and
+NBE's achievements. That perspective is easy to
 forget as a developer, but it matters for anything FinTech-shaped.
 
 This portfolio itself has been its own small case study in scope control —
@@ -109,7 +130,7 @@ happened.`,
 
 Currently comfortable with:
   JavaScript (ES6+), React.js, Next.js, HTML5/CSS3, responsive web design,
-  PHP/Laravel basics, SQL, Git/GitHub.
+  PHP/Laravel basics, Node.js/Fastify, SQL, Supabase, Git/GitHub.
 
 Actively deepening:
   - Backend architecture and system design (building on the Pan Arab Media
@@ -148,6 +169,8 @@ On the radar:
   (almentor, with National Bank of Egypt, 16 Aug 2026)
 - Financial Inclusion
   (almentor, with National Bank of Egypt, 14 Aug 2026)
+- NBE Internship Program — Certificate of Completion
+  (National Bank of Egypt, 9 Aug – 3 Sep 2026)
 - Healthy Habits During Fasting
   (almentor, with National Bank of Egypt, 14 Aug 2026)
 - Certificate of Attendance — CIB Summer Program "The Green Leap"
@@ -165,8 +188,9 @@ See CV.txt for the full professional summary.`,
     content: `ACHIEVEMENTS
 ============
 
-- Shipped 3 real projects: this Windows XP portfolio, Social Hub, and
-  Fresh Cart.
+- Shipped 6 real projects: NBE Financial Inclusion, BeeViro Financial ERP
+  System, Revenue Lab 360 Support, Fresh Cart, Social Hub, and this
+  Windows XP portfolio.
 - Completed the Front-End Diploma (React.js, Next.js, JavaScript).
 - Completed the full 3-part CCNA program (Introduction to Networks;
   Switching, Routing & Wireless Essentials; Enterprise Networking,
@@ -177,6 +201,7 @@ See CV.txt for the full professional summary.`,
 - Work part-time at Beeviro on their web-builder platform, automation
   workflows, and AI chatbot tooling.
 - Interned at Commercial International Bank (CIB) on business operations
-  analysis, and in Credit Administration at the National Bank of Egypt.`,
+  analysis, and completed the Credit Administration internship at the
+  National Bank of Egypt.`,
   },
 ];

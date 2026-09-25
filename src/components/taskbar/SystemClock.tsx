@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Volume2 } from 'lucide-react';
+import { ICON_STROKE } from '@/components/system/AppIcon';
 
 export default function SystemClock() {
   const [time, setTime] = useState('');
@@ -18,8 +20,7 @@ export default function SystemClock() {
 
   return (
     <div className="flex items-center gap-1 px-2 py-0.5 bg-white/10 border-l border-white/20 text-white text-xs">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/SoundIcon.svg" className="w-3.5 h-3.5 object-contain" alt="Volume" />
+      <Volume2 size={14} strokeWidth={ICON_STROKE} role="img" aria-label="Volume" />
       <span>{time}</span>
     </div>
   );

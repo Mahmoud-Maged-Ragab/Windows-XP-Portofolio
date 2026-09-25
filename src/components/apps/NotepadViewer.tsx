@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowLeft } from "lucide-react";
 
 interface NotepadViewerProps {
   initialContent?: string;
@@ -25,7 +26,7 @@ export default function NotepadViewer({
             onClick={onBack}
             className="xp-btn text-xs px-2 py-0.5 my-1 mr-2 flex items-center gap-1"
           >
-            ← Back
+            <ArrowLeft size={12} aria-hidden="true" /> Back
           </button>
         )}
         {["File", "Edit", "Format", "View", "Help"].map((menu) => (

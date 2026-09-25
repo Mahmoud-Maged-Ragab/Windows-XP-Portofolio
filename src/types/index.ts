@@ -1,5 +1,8 @@
 import { LucideIcon } from "lucide-react";
 
+/** An XP artwork path under /public, or a lucide-react icon. */
+export type IconSource = string | LucideIcon;
+
 export type AppId =
   | "about"
   | "cv"
@@ -32,7 +35,7 @@ export interface WindowState {
 export interface AppDefinition {
   id: AppId;
   title: string;
-  icon: string;
+  icon: IconSource;
   defaultSize: { width: number; height: number };
   minSize?: { width: number; height: number };
   /** Defaults to true — set false to keep an app Start-Menu-only (no desktop icon). */
@@ -95,8 +98,8 @@ export interface CVData {
   education: CVEducationItem[];
   certifications: string[];
   languages: string;
-  /** Path (under /public) to the original CV document. */
-  file: string;
+  /** External link (Google Drive) to the CV document. */
+  url: string;
 }
 
 export interface Project {

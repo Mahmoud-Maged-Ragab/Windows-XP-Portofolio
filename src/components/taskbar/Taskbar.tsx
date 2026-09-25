@@ -4,7 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useWindowStore } from "@/store/windowStore";
 import { APP_REGISTRY } from "@/data/apps";
-import { AppId } from "@/types";
+import { Activity } from "lucide-react";
+import { AppId, IconSource } from "@/types";
+import AppIcon from "@/components/system/AppIcon";
 import StartButton from "./StartButton";
 import StartMenu from "./StartMenu";
 import SystemClock from "./SystemClock";
@@ -14,7 +16,7 @@ import TaskManagerDialog from "@/components/system/TaskManagerDialog";
 /** Taskbar buttons reuse each app’s own XP icon from the registry. */
 const APP_ICONS = APP_REGISTRY.reduce(
   (map, app) => ({ ...map, [app.id]: app.icon }),
-  {} as Record<AppId, string>
+  {} as Record<AppId, IconSource>
 );
 
 export default function Taskbar() {
@@ -101,11 +103,10 @@ export default function Taskbar() {
               }`}
               title={win.title}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={APP_ICONS[win.appId] ?? "/WindowsXPICon.png"}
-                alt=""
-                className="w-4 h-4 object-contain shrink-0"
+              <AppIcon
+                icon={APP_ICONS[win.appId] ?? "/WindowsXPICon.png"}
+                size={16}
+                className="text-white"
               />
               <span className="truncate text-white">{win.title}</span>
             </motion.button>
@@ -130,7 +131,7 @@ export default function Taskbar() {
               { type: "separator" },
               {
                 label: "Task Manager",
-                icon: "/TaskManagerIcon.svg",
+                icon: Activity,
                 onClick: () => setTaskManagerOpen(true),
               },
               { type: "separator" },

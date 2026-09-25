@@ -1,7 +1,7 @@
 import { CVData } from "@/types";
 
 /**
- * Transcribed from cv/Mahmoud_Maged_Ragab_CV_SWE.docx — the section order,
+ * Transcribed from the latest CV (Google Drive, linked via CV_URL) — the section order,
  * wording, and dates all follow that document. The only additions are the
  * education institutions, which the CV states in its own summary and
  * certifications sections rather than next to each credential.
@@ -9,6 +9,10 @@ import { CVData } from "@/types";
  * This is the single source of truth: the CV window and the About window both
  * read from it.
  */
+/** The CV lives on Google Drive; every CV/resume link opens it in a new tab. */
+export const CV_URL =
+  "https://drive.google.com/file/d/1xcPDDQv0g2FpAe3avZrx25I8ydcP8tE1/view?usp=sharing";
+
 export const CV: CVData = {
   name: "Mahmoud Maged Ragab",
   title: "Software Engineer | Full-Stack Development & Business Technology",
@@ -21,7 +25,7 @@ export const CV: CVData = {
     location: "Cairo, Egypt",
   },
   summary:
-    "Business Information Systems (BIS) student at AASTMT (expected 2027) building toward a career in full-stack software engineering. Hands-on experience developing production web applications with React.js and Next.js, with backend exposure through a PHP/Laravel internship. Currently working part-time on automation, web-builder platforms, and AI chatbot tooling at Beeviro. Combines this technical foundation with direct exposure to banking and business operations through internships at Commercial International Bank (CIB) and National Bank of Egypt (Credit Administration), plus coursework in business process analysis, systems analysis and design, and database management. Targeting entry-level software engineering, full-stack, or business-technology roles in software companies, banking technology, and FinTech.",
+    "Business Information Systems (BIS) student at AASTMT (expected 2027) and full-stack developer working with React.js, Next.js, JavaScript (ES6+), PHP, Laravel, Node.js, Fastify, and Supabase. Projects include a financial ERP system and a customer support platform. Backend experience comes from a PHP/Laravel internship and from automation, web development, and AI chatbot work at Beeviro. Internships at Commercial International Bank (CIB) and in Credit Administration at the National Bank of Egypt added hands-on exposure to banking and business operations, alongside coursework in business process analysis, systems analysis and design, database management, and ERP. Looking for Software Engineer, Full-Stack Developer, or Business Technology Analyst roles in software, banking technology, and FinTech.",
   skills: [
     { label: "Languages", items: ["JavaScript (ES6+)", "PHP", "SQL"] },
     {
@@ -37,9 +41,14 @@ export const CV: CVData = {
     },
     {
       label: "Backend",
-      items: ["Laravel (PHP framework)", "REST-based application structure"],
+      items: [
+        "Laravel (PHP framework)",
+        "Node.js",
+        "Fastify",
+        "REST-based application structure",
+      ],
     },
-    { label: "Databases", items: ["SQL"] },
+    { label: "Databases", items: ["SQL", "Supabase"] },
     { label: "Tools", items: ["Git", "GitHub", "Version Control"] },
     {
       label: "Business & Enterprise Systems",
@@ -95,10 +104,11 @@ export const CV: CVData = {
     {
       role: "Intern, Credit Administration",
       company: "National Bank of Egypt (Bank Al-Ahly / NBE)",
-      period: "August 2026 – Present",
+      period: "August – September 2026",
       bullets: [
-        "Completing an internship within the Credit Administration section, gaining direct exposure to core banking processes, credit workflows, and operational documentation.",
-        "Building practical understanding of banking business processes relevant to future banking-technology and FinTech-focused roles.",
+        "Completed an internship within the Credit Administration section, gaining direct exposure to core banking processes, credit workflows, and operational documentation.",
+        "Built an internal web application on Financial Inclusion awareness and NBE achievements as part of the internship (see Projects).",
+        "Built practical understanding of banking business processes relevant to future banking-technology and FinTech-focused roles.",
       ],
       note: "Business/operations internship, not an IT/software placement.",
     },
@@ -114,6 +124,28 @@ export const CV: CVData = {
     },
   ],
   projects: [
+    {
+      name: "NBE Financial Inclusion, Awareness & Achievements Web App",
+      tagline: "Internship Project, National Bank of Egypt",
+      description:
+        "Built during the Credit Administration internship at National Bank of Egypt: a web app presenting financial inclusion awareness content and NBE's related achievements. Developed using Next.js.",
+      github: "https://github.com/Mahmoud-Maged-Ragab/NBE-Financial-Inclusion",
+      live: "https://nbe-financial-inclusion.vercel.app/en",
+    },
+    {
+      name: "BeeViro Financial ERP System",
+      tagline: "Accounting-Suite ERP",
+      description:
+        "Built a full accounting-suite ERP system with invoicing, expense tracking, financial reporting, and role-based permissions. Developed using Vite, Node.js, and Fastify.",
+      live: "https://bee-viro-erp-system.vercel.app/login",
+    },
+    {
+      name: "Revenue Lab 360 Support",
+      tagline: "Customer Support Tool",
+      description:
+        "Built a self-service support portal listing common issues and solutions, allowing users to submit unresolved problems directly through the site, with automatic notifications to the support team. Developed using Next.js with Supabase for database and backend services.",
+      live: "https://help.revenuelab360.com",
+    },
     {
       name: "Fresh Cart",
       tagline: "E-commerce Web Application",
@@ -159,12 +191,13 @@ export const CV: CVData = {
     "Frontend Development Diploma, React.js, Next.js, JavaScript (Route Learning Academy)",
     "Full Stack Track, Google Developer Group On Campus, AASTMT Cairo (2025–2026)",
     "Cybersecurity Track, Google Developer Group On Campus, AASTMT Cairo (2025–2026)",
-    "Financial Inclusion, National Bank of Egypt / almentor",
+    "Financial Inclusion, National Bank of Egypt (Bank Al-Ahly) / almentor",
+    "NBE Internship Program, National Bank of Egypt (Bank Al-Ahly), Certificate of Completion (2026)",
     "CCNA: Introduction to Networks",
     "CCNA: Switching, Routing, and Wireless Essentials",
     "CCNA: Enterprise Networking, Security, and Automation",
     "AUC English Diploma",
   ],
   languages: "Arabic: Native  |  English: Professional Working Proficiency",
-  file: "/cv/Mahmoud_Maged_Ragab_CV.pdf",
+  url: CV_URL,
 };

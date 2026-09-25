@@ -2,6 +2,15 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import {
+  ChevronRight,
+  LayoutGrid,
+  LogOut,
+  Power,
+  Search,
+  SquareChevronRight,
+} from "lucide-react";
+import AppIcon, { ICON_STROKE } from "@/components/system/AppIcon";
 import { APP_REGISTRY } from "@/data/apps";
 import { CV } from "@/data/cv";
 import { useWindowStore } from "@/store/windowStore";
@@ -108,20 +117,18 @@ export default function StartMenu({ onClose }: StartMenuProps) {
                 className="w-full flex items-center justify-between gap-3 px-3 py-2 hover:bg-blue-600 hover:text-white group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset"
               >
                 <span className="flex items-center gap-3">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/ProgramsIcon.svg" className="w-6 h-6 object-contain" alt="" />
+                  <AppIcon icon={LayoutGrid} size={24} className="text-[#1F4E9C] group-hover:text-white" />
                   <span className="text-sm text-gray-800 group-hover:text-white">
                     All Programs
                   </span>
                 </span>
-                <span
-                  className={`text-xs text-gray-500 group-hover:text-white transition-transform ${
+                <ChevronRight
+                  size={14}
+                  className={`text-gray-500 group-hover:text-white transition-transform ${
                     allProgramsOpen ? "rotate-90" : ""
                   }`}
                   aria-hidden="true"
-                >
-                  ▸
-                </span>
+                />
               </button>
               {allProgramsOpen && (
                 <div className="bg-blue-50/60 border-y border-gray-200 py-1">
@@ -131,8 +138,7 @@ export default function StartMenu({ onClose }: StartMenuProps) {
                       onClick={() => open(app.id)}
                       className="w-full flex items-center gap-3 pl-8 pr-3 py-1.5 hover:bg-blue-600 hover:text-white group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset"
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={app.icon} className="w-6" alt="" />
+                      <AppIcon icon={app.icon} size={24} className="text-[#1F4E9C] group-hover:text-white" />
                       <span className="text-xs text-gray-800 group-hover:text-white">
                         {app.title}
                       </span>
@@ -148,7 +154,7 @@ export default function StartMenu({ onClose }: StartMenuProps) {
         <div className="w-[110px] bg-[#D6E8F7] py-2 flex flex-col gap-1">
           {(
             [
-              { icon: "/MyComputerIcon.svg", label: "My Computer", appId: "myComputer" },
+              { icon: "/Windows_XP_My_Computer_Icon.png", label: "My Computer", appId: "myComputer" },
               { icon: "/FolderIcon.png", label: "Documents", appId: "myDocuments" },
               { icon: "/GearIcon.png", label: "Settings", appId: "controlPanel" },
             ] as { icon: string; label: string; appId: AppId }[]
@@ -174,16 +180,14 @@ export default function StartMenu({ onClose }: StartMenuProps) {
           onClick={() => open("search")}
           className="w-full flex items-center gap-3 px-3 py-1.5 hover:bg-blue-600 hover:text-white group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/SearchIcon.svg" className="w-5" alt="" />
+          <AppIcon icon={Search} size={20} className="text-[#1F4E9C] group-hover:text-white" />
           <span className="text-xs text-gray-800 group-hover:text-white">Search</span>
         </button>
         <button
           onClick={handleRun}
           className="w-full flex items-center gap-3 px-3 py-1.5 hover:bg-blue-600 hover:text-white group text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-inset"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/CommandPromptIcon.svg" className="w-5" alt="" />
+          <AppIcon icon={SquareChevronRight} size={20} className="text-[#1F4E9C] group-hover:text-white" />
           <span className="text-xs text-gray-800 group-hover:text-white">Run...</span>
         </button>
       </div>
@@ -194,15 +198,13 @@ export default function StartMenu({ onClose }: StartMenuProps) {
           onClick={handlePower}
           className="flex items-center gap-1.5 text-white text-xs hover:bg-white/20 px-2 py-1 rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/LogOffIcon.svg" className="w-4 h-4 object-contain" alt="" /> Log Off
+          <LogOut size={16} strokeWidth={ICON_STROKE} aria-hidden="true" /> Log Off
         </button>
         <button
           onClick={handlePower}
           className="flex items-center gap-1.5 text-white text-xs hover:bg-white/20 px-2 py-1 rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/PowerIcon.svg" className="w-4 h-4 object-contain" alt="" /> Shut Down
+          <Power size={16} strokeWidth={ICON_STROKE} aria-hidden="true" /> Shut Down
         </button>
       </div>
     </motion.div>

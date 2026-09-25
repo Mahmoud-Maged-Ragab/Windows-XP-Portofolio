@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { CircleHelp, Info, Keyboard, Mail, Search } from "lucide-react";
+import { IconSource } from "@/types";
+import AppIcon from "@/components/system/AppIcon";
 
 interface HelpTopic {
   id: string;
   title: string;
-  icon: string;
+  icon: IconSource;
   body: string;
 }
 
@@ -13,7 +16,7 @@ const TOPICS: HelpTopic[] = [
   {
     id: "how-it-works",
     title: "How this desktop works",
-    icon: "/MyComputerIcon.svg",
+    icon: "/Windows_XP_My_Computer_Icon.png",
     body: `This portfolio is built like a real desktop operating system.
 
 Double-click a desktop icon to open an app in its own window. Drag a window by its title bar to move it, use the minimize/maximize/close buttons in the top-right corner, and click a running app in the taskbar to switch to it or minimize it.
@@ -23,7 +26,7 @@ Right-click the desktop, an icon, or the taskbar to see more options — just li
   {
     id: "keyboard",
     title: "Keyboard shortcuts & accessibility",
-    icon: "/KeyboardIcon.svg",
+    icon: Keyboard,
     body: `Escape closes the active dialog or context menu.
 
 Tab moves focus between buttons and links, and focus is always visible.
@@ -35,7 +38,7 @@ Control Panel → Sounds lets you mute the interface chimes entirely.`,
   {
     id: "find-things",
     title: "Finding things quickly",
-    icon: "/SearchIcon.svg",
+    icon: Search,
     body: `Use Start → Search to look across projects, skills, and documents at once.
 
 Or use Start → Run to jump straight to an app by typing its name — try "calc", "notepad", or "projects".`,
@@ -43,13 +46,13 @@ Or use Start → Run to jump straight to an app by typing its name — try "calc
   {
     id: "contact",
     title: "Getting in touch with Mahmoud",
-    icon: "/EmailIcon.svg",
+    icon: Mail,
     body: `Open the Contact app (desktop icon or Start Menu) for email, LinkedIn, and GitHub links.`,
   },
   {
     id: "about-build",
     title: "About this build",
-    icon: "/InfoIcon.svg",
+    icon: Info,
     body: `Curious what this is built with? Open System Properties (right-click the desktop → Properties, or find it under Start → All Programs) for the full technology breakdown and version info.`,
   },
 ];
@@ -61,8 +64,7 @@ export default function HelpAndSupportWindow() {
   return (
     <div className="h-full flex flex-col bg-[#ECE9D8]">
       <div className="xp-start-header shrink-0 flex items-center gap-2 px-4 py-2.5">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/HelpIcon.svg" className="w-6 h-6 object-contain" alt="" />
+        <AppIcon icon={CircleHelp} size={24} className="text-white" />
         <p className="text-white font-bold text-sm">Help and Support Center</p>
       </div>
 
@@ -79,8 +81,7 @@ export default function HelpAndSupportWindow() {
                   : "text-gray-800 hover:bg-blue-100"
               }`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={t.icon} className="w-5 h-5 object-contain shrink-0" alt="" />
+              <AppIcon icon={t.icon} size={20} />
               <span className="truncate">{t.title}</span>
             </button>
           ))}
@@ -88,8 +89,7 @@ export default function HelpAndSupportWindow() {
 
         <div className="flex-1 overflow-y-auto p-5">
           <h2 className="text-base font-bold text-gray-800 mb-3 flex items-center gap-2">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={active.icon} className="w-6 h-6 object-contain" alt="" />
+            <AppIcon icon={active.icon} size={24} className="text-[#1F4E9C]" />
             {active.title}
           </h2>
           <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-line">

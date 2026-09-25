@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowLeft, Check, ExternalLink } from "lucide-react";
 import { PROJECTS } from "@/data/projects";
 import { Project } from "@/types";
 
@@ -19,7 +20,7 @@ function ProjectDetail({
           onClick={onBack}
           className="xp-btn text-xs px-2 py-0.5 flex items-center gap-1"
         >
-          ← Back
+          <ArrowLeft size={12} aria-hidden="true" /> Back
         </button>
         <span className="text-xs text-gray-600 font-mono">
           C:\Projects\{project.name}
@@ -42,9 +43,9 @@ function ProjectDetail({
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="xp-btn text-xs px-2 py-0.5"
+                  className="xp-btn text-xs px-2 py-0.5 inline-flex items-center gap-1"
                 >
-                  GitHub →
+                  GitHub <ExternalLink size={12} aria-hidden="true" />
                 </a>
               )}
               {project.live && (
@@ -52,9 +53,9 @@ function ProjectDetail({
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="xp-btn text-xs px-2 py-0.5"
+                  className="xp-btn text-xs px-2 py-0.5 inline-flex items-center gap-1"
                 >
-                  Live Demo →
+                  Live Demo <ExternalLink size={12} aria-hidden="true" />
                 </a>
               )}
             </div>
@@ -93,7 +94,7 @@ function ProjectDetail({
                 key={f}
                 className="flex items-start gap-2 text-sm text-gray-700"
               >
-                <span className="text-green-500 mt-0.5 shrink-0">✓</span>
+                <Check size={14} className="text-green-500 mt-0.5 shrink-0" aria-hidden="true" />
                 <span>{f}</span>
               </li>
             ))}

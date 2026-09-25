@@ -210,13 +210,13 @@ export default function CVWindow() {
 
       <div className="shrink-0 border-t border-gray-300 bg-[#ECE9D8] px-4 py-2">
         <a
-          href={CV.file}
+          href={CV.url}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#ECE9D8] border border-gray-400 rounded shadow-sm hover:bg-blue-600 hover:text-white text-xs"
         >
           <FileType2 size={16} />
-          Open CV (PDF)
+          View CV (Google Drive)
           <ExternalLink size={14} />
         </a>
       </div>

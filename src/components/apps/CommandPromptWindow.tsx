@@ -14,11 +14,11 @@ function execute(cmd: string): string {
     case "whoami":
       return "MAHMOUD-XP\\mahmoud.ragab";
     case "skills":
-      return "JavaScript (ES6+), PHP, SQL, React.js, Next.js, Laravel, Git — see the Skills app for the full list.";
+      return "JavaScript (ES6+), PHP, SQL, React.js, Next.js, Laravel, Node.js, Fastify, Supabase, Git — see the Skills app for the full list.";
     case "projects":
-      return "Windows XP Portfolio, Social Hub, Fresh Cart — see the Projects app for details.";
+      return "NBE Financial Inclusion, BeeViro Financial ERP System, Revenue Lab 360 Support, Fresh Cart, Social Hub, Windows XP Portfolio — see the Projects app for details.";
     case "contact":
-      return "Mahmoud.m.ragab@gmail.com | github.com/Mahmoud-Maged-Ragab | linkedin.com/in/mahmoud-ragab-5485652a1";
+      return "Mahmoud.m.Ragab06@gmail.com | github.com/Mahmoud-Maged-Ragab | linkedin.com/in/mahmoud-ragab-5485652a1";
     case "exit":
       return "Closing a terminal window from inside itself isn't supported here — use the X button.";
     case "sudo make me a sandwich":

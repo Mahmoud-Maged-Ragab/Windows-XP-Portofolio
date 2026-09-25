@@ -7,6 +7,8 @@ import { useWindowStore } from "@/store/windowStore";
 import { useSystemStore } from "@/store/systemStore";
 import ContextMenu, { useContextMenu } from "@/components/system/ContextMenu";
 import XPDialog from "@/components/system/XPDialog";
+import AppIcon from "@/components/system/AppIcon";
+import { Info } from "lucide-react";
 
 interface DesktopIconProps {
   app: AppDefinition;
@@ -48,14 +50,10 @@ export default function DesktopIcon({ app }: DesktopIconProps) {
       >
         {/* Icon — 32px is the XP desktop default, 48px its large-icon setting */}
         <div className="relative shrink-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={app.icon}
-            width={iconPx}
-            height={iconPx}
-            style={{ width: iconPx, height: iconPx }}
-            className="object-contain drop-shadow-[0_1px_1px_rgba(0,0,0,0.45)]"
-            alt=""
+          <AppIcon
+            icon={app.icon}
+            size={iconPx}
+            className="text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.45)]"
           />
           {/* XP tints the icon itself blue when it is selected */}
           {selected && (
@@ -91,7 +89,7 @@ export default function DesktopIcon({ app }: DesktopIconProps) {
               { type: "separator" },
               {
                 label: "Properties",
-                icon: "/InfoIcon.svg",
+                icon: Info,
                 onClick: () => setShowProperties(true),
               },
             ]}
@@ -116,8 +114,7 @@ export default function DesktopIcon({ app }: DesktopIconProps) {
             }
           >
             <div className="flex items-center gap-3 mb-3">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={app.icon} className="w-10 h-10" alt="" />
+              <AppIcon icon={app.icon} size={40} className="text-[#1F4E9C]" />
               <p className="font-bold text-gray-800">{app.title}</p>
             </div>
             <dl className="text-xs text-gray-700 space-y-1">

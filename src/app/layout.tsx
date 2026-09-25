@@ -10,7 +10,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Portfolio Mahmoud Ragab",
   description:
-    "Personal portfolio of Mahmoud Maged Ragab, a Software Engineer working across full-stack development and business technology with React.js, Next.js, and Laravel. Presented as an interactive Windows XP desktop experience.",
+    "Personal portfolio of Mahmoud Maged Ragab, a Software Engineer working across full-stack development and business technology with React.js, Next.js, Node.js, and Laravel. Presented as an interactive Windows XP desktop experience.",
   keywords: [
     "software engineer",
     "full-stack developer",

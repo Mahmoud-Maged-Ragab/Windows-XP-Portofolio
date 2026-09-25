@@ -2,10 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { X } from "lucide-react";
+import { IconSource } from "@/types";
+import AppIcon from "./AppIcon";
 
 interface XPDialogProps {
   title: string;
-  icon?: string;
+  icon?: IconSource;
   onClose: () => void;
   children: React.ReactNode;
   footer?: React.ReactNode;
@@ -59,10 +62,7 @@ export default function XPDialog({
       >
         <div className="xp-titlebar flex items-center justify-between px-2 py-1 shrink-0">
           <div className="flex items-center gap-1.5 min-w-0">
-            {icon && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={icon} className="w-4 h-4" alt="" />
-            )}
+            {icon && <AppIcon icon={icon} size={16} className="text-white" />}
             <span className="text-white text-xs font-bold truncate drop-shadow-sm">
               {title}
             </span>
@@ -73,7 +73,7 @@ export default function XPDialog({
             className="xp-btn-close w-[18px] h-[18px] flex items-center justify-center text-white text-xs font-bold rounded-sm leading-none shrink-0"
             aria-label="Close dialog"
           >
-            ✕
+            <X size={12} strokeWidth={3} aria-hidden="true" />
           </button>
         </div>
 
